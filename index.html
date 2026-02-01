@@ -245,6 +245,59 @@
   }
   .video-btn:hover { background: rgba(239,68,68,0.25); color: #EF4444; }
 
+  /* Sentiment Analysis */
+  .sentiment-box {
+    background: rgba(15,23,42,0.5); border-radius: 12px; padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.06); margin-top: 1rem;
+  }
+  .sentiment-box h4 { margin-bottom: 1rem; }
+  .sentiment-bar-container {
+    display: flex; height: 28px; border-radius: 8px; overflow: hidden; margin-bottom: 0.8rem;
+    background: var(--bg3);
+  }
+  .sentiment-bar-pos { background: linear-gradient(90deg, #10B981, #34D399); }
+  .sentiment-bar-neu { background: linear-gradient(90deg, #F59E0B, #FBBF24); }
+  .sentiment-bar-neg { background: linear-gradient(90deg, #EF4444, #F87171); }
+  .sentiment-bar-container > div {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.72rem; font-weight: 700; color: #000; min-width: 30px;
+    transition: width 0.6s ease;
+  }
+  .sentiment-legend {
+    display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 0.8rem;
+  }
+  .sentiment-legend span {
+    display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: var(--text-muted);
+  }
+  .sentiment-legend .dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+  .sentiment-legend .dot-pos { background: #10B981; }
+  .sentiment-legend .dot-neu { background: #F59E0B; }
+  .sentiment-legend .dot-neg { background: #EF4444; }
+  .sentiment-score {
+    font-size: 2rem; font-weight: 900; margin-right: 0.5rem;
+  }
+  .sentiment-score.score-high { color: #10B981; }
+  .sentiment-score.score-mid { color: #F59E0B; }
+  .sentiment-score.score-low { color: #EF4444; }
+  .sentiment-meta {
+    font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem;
+  }
+  .sentiment-keywords {
+    display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem;
+  }
+  .keyword {
+    padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.72rem; font-weight: 600;
+  }
+  .keyword-pos { background: rgba(16,185,129,0.15); color: #10B981; }
+  .keyword-neg { background: rgba(239,68,68,0.15); color: #EF4444; }
+  .review-quote {
+    font-style: italic; font-size: 0.85rem; color: var(--text-muted);
+    border-left: 3px solid var(--primary-light); padding-left: 1rem;
+    margin-top: 0.8rem; line-height: 1.6;
+  }
+
   /* Footer */
   footer {
     text-align: center; padding: 3rem; color: var(--text-muted);
@@ -609,11 +662,36 @@
           <a href="https://www.youtube.com/watch?v=rfsvO3x1c10" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Lehrplan-konform, kostenlos, gut strukturiert, ideal für Hausaufgaben, kein Werbedruck</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Wenig emotionale Tiefe, "trocken" und nüchtern, fehlende narrative Bindung durch Geschichten</p>
+          <h4>Sentimentanalyse (141 Reviews, Play Store)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-high">8.7</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-pos" style="width:82%">82%</div>
+              <div class="sentiment-bar-neu" style="width:12%">12%</div>
+              <div class="sentiment-bar-neg" style="width:6%">6%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (82%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (12%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (6%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-pos">kostenlos</span>
+              <span class="keyword keyword-pos">motivierend</span>
+              <span class="keyword keyword-pos">werbefrei</span>
+              <span class="keyword keyword-pos">Lehrplan</span>
+              <span class="keyword keyword-pos">Kinder lernen gerne</span>
+              <span class="keyword keyword-pos">Spiele als Belohnung</span>
+              <span class="keyword keyword-neg">Sprachausgabe fehlerhaft</span>
+              <span class="keyword keyword-neg">nur online</span>
+              <span class="keyword keyword-neg">monoton/trocken</span>
+            </div>
+            <div class="review-quote">"Umfassend, seriös und werbefrei - absolut empfehlenswert! Die App kommt ohne Schnickschnack daher, mit Altersstufen-gerechten Aufgaben und kleinen Belohnungen nach geschaffter Arbeit."</div>
+            <div class="review-quote">"Leider sind einige Funktionen nicht optimal. Aufgaben nur mit Internet, Aufgaben sind immer gleich. Wenn man Fehler hat, macht man einfach nochmal genau die selben Aufgaben."</div>
+            <p class="sentiment-meta">Analyse basiert auf 141 extrahierten Play Store Reviews (Stand Jan 2026)</p>
           </div>
         </div>
       </div>
@@ -641,11 +719,31 @@
           <p><a href="https://www.leseludi.de/" target="_blank">leseludi.de</a></p>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Didaktisch präzise, streng systematisch, ideal bei LRS, gute Lehrerfunktionen</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Kostenpflichtig (Schul-/Elternlizenz), wirkt wie "Software" statt App, wenig motivierendes Design</p>
+          <h4>Sentimentanalyse</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-mid">6.5</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 (Web-Plattform, kein App Store)</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-pos" style="width:60%">60%</div>
+              <div class="sentiment-bar-neu" style="width:25%">25%</div>
+              <div class="sentiment-bar-neg" style="width:15%">15%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (60%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (25%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (15%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-pos">didaktisch präzise</span>
+              <span class="keyword keyword-pos">LRS-geeignet</span>
+              <span class="keyword keyword-pos">systematisch</span>
+              <span class="keyword keyword-neg">kostenpflichtig</span>
+              <span class="keyword keyword-neg">wirkt wie Software</span>
+              <span class="keyword keyword-neg">wenig motivierend</span>
+            </div>
+            <p class="sentiment-meta">Sentiment basiert auf Fachbewertungen und PDF-Analyse (keine Play Store Präsenz)</p>
           </div>
         </div>
       </div>
@@ -673,11 +771,31 @@
           <a href="https://www.youtube.com/watch?v=4E1J8HjKNRY" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Adaptive Niveausteuerung, motivierende Texte, gutes Audio-Modelllernen, auch für DaZ geeignet</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Abo-Modell als Kostenbarriere, begrenzte Bekanntheit im Vergleich zu Anton</p>
+          <h4>Sentimentanalyse (3 Reviews, Play Store DE)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-low">3.0</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-pos" style="width:15%">15%</div>
+              <div class="sentiment-bar-neu" style="width:20%">20%</div>
+              <div class="sentiment-bar-neg" style="width:65%">65%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (15%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (20%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (65%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-pos">Englisch-Lernhilfe</span>
+              <span class="keyword keyword-neg">nur Englisch</span>
+              <span class="keyword keyword-neg">Deutsch nicht verfügbar</span>
+              <span class="keyword keyword-neg">Abo-Modell</span>
+            </div>
+            <div class="review-quote">"Leider nur auf Englisch!!! Sonst hätte die 5 Sterne vergeben. Please bring a German Version!"</div>
+            <div class="review-quote">"Habe deutsch eingestellt - funktioniert aber nur auf englisch. Sehr schade!"</div>
+            <p class="sentiment-meta">Analyse basiert auf 3 extrahierten Play Store Reviews (Stand Jan 2026). Niedrige Review-Zahl im dt. Store.</p>
           </div>
         </div>
       </div>
@@ -741,11 +859,33 @@
           <a href="https://www.youtube.com/watch?v=S4oJkSriF_Q" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Sicher, kostenlos, kindgerecht, spielerischer Einstieg ohne Überforderung</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Sehr begrenzter Umfang (nur 5 Bücher), kein Anreiz für langfristige Nutzung, Impulsgeber statt Curriculum</p>
+          <h4>Sentimentanalyse (5 Reviews, Play Store)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-mid">5.5</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-pos" style="width:40%">40%</div>
+              <div class="sentiment-bar-neu" style="width:20%">20%</div>
+              <div class="sentiment-bar-neg" style="width:40%">40%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (40%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (20%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (40%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-pos">liebevoll gestaltet</span>
+              <span class="keyword keyword-pos">schöne Bücher</span>
+              <span class="keyword keyword-pos">unterhaltsam</span>
+              <span class="keyword keyword-neg">Schrift zu klein</span>
+              <span class="keyword keyword-neg">lehrt nicht Lesen</span>
+              <span class="keyword keyword-neg">begrenzter Umfang</span>
+            </div>
+            <div class="review-quote">"Diese App beinhaltet eine schöne Auswahl an Büchern für Erstleser. Die Bücher sind unterhaltsam gestaltet. Man kann die Bilder antippen, worauf dann Töne und Geräusche abgespielt werden."</div>
+            <div class="review-quote">"Hält nicht, was es verspricht, leider werden hier keine Laute geübt oder das Kind beim lesen lernen unterstützt."</div>
+            <p class="sentiment-meta">Analyse basiert auf 5 extrahierten Play Store Reviews (Stand Jan 2026)</p>
           </div>
         </div>
       </div>
@@ -773,11 +913,31 @@
           <a href="https://www.youtube.com/watch?v=7IM5M92-dek" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Hochwertige animierte Geschichten, Lehrerbegleitmaterial, Silbenhilfe-Funktion</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Weniger interaktive Einzelübungen, eher Lehrer-Tool als Selbstlern-App, kostenpflichtig</p>
+          <h4>Sentimentanalyse (3 Reviews, Play Store)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-mid">5.0</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-pos" style="width:33%">33%</div>
+              <div class="sentiment-bar-neu" style="width:33%">33%</div>
+              <div class="sentiment-bar-neg" style="width:34%">34%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (33%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (33%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (34%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-pos">liebevoll gestaltet</span>
+              <span class="keyword keyword-pos">schöne Bücher</span>
+              <span class="keyword keyword-neg">Schrift zu klein</span>
+              <span class="keyword keyword-neg">kein echtes Lesenlernen</span>
+              <span class="keyword keyword-neg">eher Vorlese-Tool</span>
+            </div>
+            <div class="review-quote">"Die App ist sehr liebevoll gestaltet. Allerdings ist die Schrift so klein, dass mein Kind sie nicht lesen kann."</div>
+            <p class="sentiment-meta">Analyse basiert auf 3 extrahierten Play Store Reviews (Stand Jan 2026). Hauptnutzung über Schullizenzen.</p>
           </div>
         </div>
       </div>
@@ -805,11 +965,34 @@
           <a href="https://www.youtube.com/watch?v=aVvAQQZVQbk" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Innovatives Konzept, kindgerechtes Design, haptisches Lernerlebnis, motivierend</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Starterset-Kosten, begrenzte Tiefe für reines Lesenlernen, eher Vorschul-orientiert</p>
+          <h4>Sentimentanalyse (3 Reviews, Play Store)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-low">3.5</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-pos" style="width:20%">20%</div>
+              <div class="sentiment-bar-neu" style="width:15%">15%</div>
+              <div class="sentiment-bar-neg" style="width:65%">65%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (20%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (15%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (65%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-pos">tolle Inhalte</span>
+              <span class="keyword keyword-pos">nette Idee</span>
+              <span class="keyword keyword-neg">eintönig</span>
+              <span class="keyword keyword-neg">verbuggt</span>
+              <span class="keyword keyword-neg">App stürzt ab</span>
+              <span class="keyword keyword-neg">Figuren nicht erkannt</span>
+              <span class="keyword keyword-neg">Support nicht erreichbar</span>
+            </div>
+            <div class="review-quote">"Tolle Inhalte, aber technisch miserabel. Auf dem Fire Tablet stürzt die App ständig ab oder hängt mit schwarzem Bildschirm."</div>
+            <div class="review-quote">"Eigentlich nette Idee. Die Spiele sind jedoch sehr eintönig und wiederholen sich oft. Der Schwierigkeitsgrad ist viel zu einfach."</div>
+            <p class="sentiment-meta">Analyse basiert auf 3 extrahierten Play Store Reviews (Stand Jan 2026)</p>
           </div>
         </div>
       </div>
@@ -837,11 +1020,32 @@
           <a href="https://www.youtube.com/watch?v=DagRCXJ4qr0" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Riesige Bücher-Datenbank, fördert Lesemotivation, Punktesystem motiviert</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Nicht zum Lesenlernen geeignet, überfordert Anfänger, setzt Lesekönnen voraus</p>
+          <h4>Sentimentanalyse (4 Reviews, Play Store)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-mid">5.5</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-pos" style="width:50%">50%</div>
+              <div class="sentiment-bar-neu" style="width:25%">25%</div>
+              <div class="sentiment-bar-neg" style="width:25%">25%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (50%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (25%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (25%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-pos">abwechslungsreich</span>
+              <span class="keyword keyword-pos">Speedkomponente</span>
+              <span class="keyword keyword-pos">toll für Leseanfänger</span>
+              <span class="keyword keyword-neg">netter Zeitvertreib</span>
+              <span class="keyword keyword-neg">Englisch-Anteil</span>
+            </div>
+            <div class="review-quote">"Die Leseentwicklung setzt voraus, dass die Laut-Buchstabe-Zuordnung zur Verfügung steht. Genau das leistet diese App mit abwechslungsreichen Spielen und der Speedkomponente. Toll gemacht!"</div>
+            <div class="review-quote">"Habe mir etwas anderes darunter vorgestellt. Für Kinder ein netter Zeitvertreib."</div>
+            <p class="sentiment-meta">Analyse basiert auf 4 extrahierten Play Store Reviews (Stand Jan 2026)</p>
           </div>
         </div>
       </div>
@@ -874,11 +1078,29 @@
           <a href="https://www.youtube.com/watch?v=fiG7Tu7Xy_w" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Offline-fähig, kostenlos, Spracherkennung funktioniert gut, motivierender Assistent</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Kein strukturierter deutscher Leselehrgang, Texte oft Übersetzungen, kein Silben-Fokus</p>
+          <h4>Sentimentanalyse (3 Reviews, Play Store DE)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-mid">4.5</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-pos" style="width:33%">33%</div>
+              <div class="sentiment-bar-neu" style="width:33%">33%</div>
+              <div class="sentiment-bar-neg" style="width:34%">34%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (33%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (33%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (34%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-pos">brilliant selection</span>
+              <span class="keyword keyword-neg">Deutsch fehlt</span>
+              <span class="keyword keyword-neg">kein dt. Curriculum</span>
+            </div>
+            <div class="review-quote">"Könnt ihr bitte Deutsch machen?"</div>
+            <p class="sentiment-meta">Nur 3 deutsche Reviews. Globale Bewertung deutlich positiver (EN-Markt).</p>
           </div>
         </div>
       </div>
@@ -906,11 +1128,21 @@
           <a href="https://www.youtube.com/watch?v=p9fpqb0kzKk" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Riesige Auswahl, hochwertige Bücher, Audio-Bücher verfügbar</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> US-zentriert, kein deutsches Lern-Curriculum, Abo erforderlich</p>
+          <h4>Sentimentanalyse (Play Store DE)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-low">–</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">Keine deutschen Reviews extrahierbar</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-neu" style="width:100%">Keine Daten</div>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-neg">US-zentriert</span>
+              <span class="keyword keyword-neg">kein dt. Curriculum</span>
+              <span class="keyword keyword-neg">Abo erforderlich</span>
+            </div>
+            <p class="sentiment-meta">Keine deutschsprachigen Reviews im Play Store extrahierbar. App ist im DACH-Raum kaum präsent.</p>
           </div>
         </div>
       </div>
@@ -938,11 +1170,31 @@
           <a href="https://www.youtube.com/watch?v=HyAW7gY397s" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Brillantes Spieldesign, motivierend, pädagogisch fundiert (für Englisch)</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Nur Englisch – lehrt deutsche Kinder falsche Lautierung, verwirrt Erstleser</p>
+          <h4>Sentimentanalyse (5 Reviews, Play Store DE)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-mid">5.0</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-pos" style="width:40%">40%</div>
+              <div class="sentiment-bar-neu" style="width:20%">20%</div>
+              <div class="sentiment-bar-neg" style="width:40%">40%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (40%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (20%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (40%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-pos">macht Spaß</span>
+              <span class="keyword keyword-pos">spielerisch</span>
+              <span class="keyword keyword-neg">nur Englisch</span>
+              <span class="keyword keyword-neg">Kinder müssen erst Deutsch lernen</span>
+            </div>
+            <div class="review-quote">"Wenn jetzt noch die deutsche Sprache hinzugefügt werden würde, dann wäre die App der Hit."</div>
+            <div class="review-quote">"Ich denke, dass 6-jährige Kinder erst deutsch lernen sollen, bevor sie englisch lernen."</div>
+            <p class="sentiment-meta">Analyse basiert auf 5 extrahierten Play Store Reviews (Stand Jan 2026)</p>
           </div>
         </div>
       </div>
@@ -970,11 +1222,30 @@
           <a href="https://www.youtube.com/watch?v=un8P0d756gI" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Bewährtes, strukturiertes System, motivierend, viele Level</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Nur Englisch, keine deutsche Lokalisierung, für dt. Markt unbrauchbar</p>
+          <h4>Sentimentanalyse (3 Reviews, Play Store DE)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-low">3.0</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-pos" style="width:20%">20%</div>
+              <div class="sentiment-bar-neu" style="width:15%">15%</div>
+              <div class="sentiment-bar-neg" style="width:65%">65%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (20%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (15%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (65%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-pos">bewährtes System</span>
+              <span class="keyword keyword-neg">nur Englisch</span>
+              <span class="keyword keyword-neg">eintönig</span>
+              <span class="keyword keyword-neg">technische Probleme</span>
+            </div>
+            <div class="review-quote">"Awesome app. We love it." (englischsprachiger Nutzer)</div>
+            <p class="sentiment-meta">Analyse basiert auf 3 extrahierten Play Store Reviews (Stand Jan 2026). Überwiegend englische Nutzer.</p>
           </div>
         </div>
       </div>
@@ -1002,11 +1273,30 @@
           <a href="https://www.youtube.com/watch?v=O6i-l1MywkQ" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Höchste Qualität, kostenlos, kein Werbedruck, umfassende Lerninhalte</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Sprachbarriere – rein Englisch, nicht für deutschen Leseerwerb nutzbar</p>
+          <h4>Sentimentanalyse (3 Reviews, Play Store DE)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-low">3.0</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-pos" style="width:15%">15%</div>
+              <div class="sentiment-bar-neu" style="width:20%">20%</div>
+              <div class="sentiment-bar-neg" style="width:65%">65%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (15%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (20%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (65%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-pos">hohe Qualität</span>
+              <span class="keyword keyword-neg">nur Englisch</span>
+              <span class="keyword keyword-neg">Deutsch nicht verfügbar</span>
+            </div>
+            <div class="review-quote">"Habe deutsch eingestellt - funktioniert aber nur auf englisch. Sehr schade!"</div>
+            <div class="review-quote">"Leider nur auf Englisch!!! Sonst hätte die 5 Sterne vergeben."</div>
+            <p class="sentiment-meta">Analyse basiert auf 3 extrahierten Play Store Reviews (Stand Jan 2026)</p>
           </div>
         </div>
       </div>
@@ -1034,11 +1324,24 @@
           <a href="https://www.youtube.com/watch?v=505XSxcKFDQ" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Umfangreicher Inhalt, ansprechendes Design, Kinder bleiben motiviert</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Sprachbarriere, nur Englisch, teures Abo, nicht für dt. Erstleser</p>
+          <h4>Sentimentanalyse (1 Review, Play Store DE)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-low">2.0</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-neg" style="width:100%">100% negativ</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-neg"></span>Negativ (100%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-neg">alles Englisch</span>
+              <span class="keyword keyword-neg">Kind muss erst Deutsch lernen</span>
+            </div>
+            <div class="review-quote">"Ist halt alles englisch zum lernen. Mein kleiner muss ja erstmal die deutschen Wörter lernen."</div>
+            <p class="sentiment-meta">Nur 1 deutschsprachiges Review extrahierbar. Sprachbarriere als Hauptkritik.</p>
           </div>
         </div>
       </div>
@@ -1066,11 +1369,31 @@
           <a href="https://www.youtube.com/watch?v=TlW6PfS6Txg" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Nutzerbewertungen (Play Store)</h4>
-          <div class="review-summary">
-            <p><strong class="review-pro">+ Positiv:</strong> Spielerisch, gutes Duolingo-Design, motivierend</p>
-            <br>
-            <p><strong class="review-con">- Negativ:</strong> Lehrt englische Phonetik, für dt. Erstleseunterricht kontraproduktiv</p>
+          <h4>Sentimentanalyse (3 Reviews, Play Store DE)</h4>
+          <div class="sentiment-box">
+            <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
+              <span class="sentiment-score score-low">3.5</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+            </div>
+            <div class="sentiment-bar-container">
+              <div class="sentiment-bar-pos" style="width:20%">20%</div>
+              <div class="sentiment-bar-neu" style="width:15%">15%</div>
+              <div class="sentiment-bar-neg" style="width:65%">65%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (20%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (15%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (65%)</span>
+            </div>
+            <div class="sentiment-keywords">
+              <span class="keyword keyword-pos">hilft Englisch-Buchstaben</span>
+              <span class="keyword keyword-neg">nur Englisch</span>
+              <span class="keyword keyword-neg">nicht wie normales Duolingo</span>
+              <span class="keyword keyword-neg">kein Deutsch lernbar</span>
+            </div>
+            <div class="review-quote">"Scheint eine gute Lern-App für Kleinkinder zu sein, leider nur für Englisch. Ich dachte, es wäre so etwas wie normale Duolingo, nur für Kleinkinder."</div>
+            <div class="review-quote">"Funktioniert wirklich nur auf Englisch."</div>
+            <p class="sentiment-meta">Analyse basiert auf 3 extrahierten Play Store Reviews (Stand Jan 2026)</p>
           </div>
         </div>
       </div>

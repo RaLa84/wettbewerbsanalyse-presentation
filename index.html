@@ -324,6 +324,18 @@
   }
   footer a { color: var(--primary-light); text-decoration: none; }
 
+  /* Screenshot Gallery */
+  .screenshot-gallery {
+    display: flex; gap: 0.75rem; overflow-x: auto; padding: 1rem 1.5rem;
+    background: rgba(0,0,0,0.2); scroll-snap-type: x mandatory;
+  }
+  .screenshot-gallery img {
+    height: 220px; border-radius: 12px; scroll-snap-align: start;
+    flex-shrink: 0; object-fit: contain; cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .screenshot-gallery img:hover { transform: scale(1.05); }
+
   /* Responsive */
   @media (max-width: 768px) {
     section { padding: 6rem 1.5rem 3rem; }
@@ -691,7 +703,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/anton/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/anton/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/anton/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/anton/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Der Quasi-Standard in deutschen Klassenzimmern. Anton fungiert als digitales Arbeitsheft mit strikter Lehrplan-Orientierung. Für Klasse 1 Deutsch bietet die App granulare Übungen zu Silbenarbeit ("Eine Silbe", "Zwei Silben", "Silbenbögen setzen"), phonologischer Bewusstheit (Anlaute, Reime) und ein Belohnungssystem mit Münzen, das strikt vom Lernprozess getrennt ist.</p>
@@ -800,7 +818,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/ekidz/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/ekidz/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/ekidz/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/ekidz/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Die technologische Speerspitze. Mit Sprachwissenschaftlern entwickelt, bietet eKidz Graded Readers (Level 1–13) und KI-basierte Diagnose der Leseflüssigkeit (Projekt "LeseKind", BMBF-gefördert). Kinder lesen laut vor, die App analysiert Aussprache, Geschwindigkeit und Korrektheit in Echtzeit. Besonders DaZ-geeignet.</p>
@@ -888,7 +912,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/lesestart/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/lesestart/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/lesestart/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/lesestart/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Teil des bundesweiten Leseförderprogramms "Lesestart 1-2-3" (Stiftung Lesen, BMBF). Bietet 5 interaktive Bücher mit dem Lesestart-Känguru als Protagonist. Modi: "Alleine Lesen", "Gemeinsam Lesen" und Vorlesefunktion. Kostenlos, werbefrei, pädagogisch geprüft.</p>
@@ -942,7 +972,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/onilo/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/onilo/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/onilo/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/onilo/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Digitalisiert Kinderliteratur als animierte "Boardstories" für Whiteboard/Tablet. Setzt auf "Dialogisches Vorlesen" im Klassenverband. Bietet Silbenhilfe, differenzierte Textpräsentation und Themenwelten ("Schulanfang" bis "Soziales Lernen"). Unschlagbar für literarische Kompetenz und Lesemotivation.</p>
@@ -994,7 +1030,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/edurino/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/edurino/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/edurino/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/edurino/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Innovativer Hybrid-Ansatz: Haptischer Eingabestift + digitale App-Inhalte. Zielgruppe Vorschule bis 1. Klasse. Spielfiguren schalten Lernwelten frei. Kombination aus physischem und digitalem Lernen spricht mehrere Sinneskanäle an.</p>
@@ -1049,7 +1091,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/antolin/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/antolin/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/antolin/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/antolin/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Kein Lese-Lernprogramm, sondern Diagnostik- und Motivationsinstrument. Kinder lesen physische Bücher und beantworten dann Quiz-Fragen zum Textverständnis. Riesige Datenbank mit Quizzen zu Tausenden Kinderbüchern. Erst ab 2. Halbjahr Klasse 1 sinnvoll einsetzbar.</p>
@@ -1107,7 +1155,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/readalong/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/readalong/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/readalong/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/readalong/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Technologisch eine der fortschrittlichsten Lese-Apps weltweit. Die KI-basierte Spracherkennung ("Diya") hört Kindern beim Vorlesen zu, gibt Echtzeit-Feedback zu Aussprache und Betonung und funktioniert komplett offline. Unterstützt über 180 Sprachen. Das adaptive System passt den Schwierigkeitsgrad dynamisch an. Für englischsprachige Leseanfänger ein herausragendes, kostenloses Tool mit einer Technologie, die vielen deutschen Apps deutlich überlegen ist.</p>
@@ -1162,7 +1216,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/epic/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/epic/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/epic/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/epic/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Die größte digitale Kinderbuch-Bibliothek der Welt ("Netflix für Bücher") mit über 40.000 Büchern, Audio-Büchern und Lernvideos. Das Lexile-Level-System ermöglicht eine präzise Zuordnung nach Lesefähigkeit. Für englischsprachige Familien ein herausragendes Angebot, das Lesefreude und -motivation fördert. Kein Lernprogramm im engeren Sinne, aber ein mächtiges Werkzeug zur Leseförderung.</p>
@@ -1214,7 +1274,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/teachmonster/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/teachmonster/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/teachmonster/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/teachmonster/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Eines der besten Lernspiele weltweit und das Referenzprodukt für spielbasiertes Phonics-Lernen. Mehrfach preisgekrönt (BAFTA). Kinder erstellen ein Monster und reisen durch Welten, in denen Buchstaben, Laute und Wörter in das Gameplay integriert sind. Das Game Design ist so überzeugend, dass deutsche Nutzer schreiben: "If the German language were added now, the app would be the hit." Die Qualität der Gamification übertrifft alle deutschen Wettbewerber deutlich.</p>
@@ -1268,7 +1334,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/readingeggs/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/readingeggs/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/readingeggs/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/readingeggs/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Marktführer in Australien und UK mit einem wissenschaftlich fundierten, strukturierten Phonics-Lehrgang. Die App führt Kinder in über 120 Lektionen systematisch durch alle Stufen des Leseerwerbs – von Buchstabenerkennung über Phonem-Blending bis zum flüssigen Lesen. Adaptive Schwierigkeitsanpassung und ein ausgefeiltes Belohnungssystem. Für englischsprachige Leseanfänger eine der umfassendsten Lösungen am Markt.</p>
@@ -1320,7 +1392,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/khan/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/khan/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/khan/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/khan/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Die wohl beste ganzheitliche Vorschul- und Grundschul-App weltweit – und komplett kostenlos, ohne Werbung und ohne In-App-Käufe. Umfasst Lesen, Mathematik, Logik, soziale Kompetenz und kreative Ausdrucksformen. Liebevoll gestaltete Charaktere begleiten Kinder durch adaptive Lernpfade. Das Qualitätsniveau, das Khan Academy hier kostenlos bietet, ist bemerkenswert und von keiner deutschen App erreicht.</p>
@@ -1373,7 +1451,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/abcmouse/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/abcmouse/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/abcmouse/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/abcmouse/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Eines der umfangreichsten digitalen Vorschul-Curricula weltweit mit über 10.000 Lernaktivitäten. Deckt Lesen, Mathe, Kunst, Musik und Naturwissenschaften ab. Der Step-by-Step Learning Path führt Kinder strukturiert durch 10 Level. Für englischsprachige Vorschulkinder ein komplettes, motivierendes Lernprogramm mit hoher Produktionsqualität.</p>
@@ -1426,7 +1510,13 @@
           </div>
         </div>
       </div>
-      <div class="detail-card-body">
+            <div class="screenshot-gallery">
+        <img src="screenshots/duolingo/screen1.webp" alt="Screenshot 1" loading="lazy">
+        <img src="screenshots/duolingo/screen2.webp" alt="Screenshot 2" loading="lazy">
+        <img src="screenshots/duolingo/screen3.webp" alt="Screenshot 3" loading="lazy">
+        <img src="screenshots/duolingo/screen4.webp" alt="Screenshot 4" loading="lazy">
+      </div>
+<div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
           <p>Speziell für English Literacy entwickelt – nicht zu verwechseln mit der normalen Duolingo-App. Nutzt das bewährte Duolingo-Gamification-System (kurze Lektionen, Streaks, sofortiges Feedback) für den englischen Leseerwerb. Strukturierter Phonics-Aufbau von Buchstabenerkennung bis zum Lesen ganzer Sätze. Kostenlos und werbefrei. Für englischsprachige Vorschulkinder eine solide, motivierende Lösung.</p>

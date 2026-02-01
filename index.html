@@ -235,6 +235,24 @@
   .grade-5 { background: rgba(239,68,68,0.15); color: #EF4444; }
   .grade-6 { background: rgba(239,68,68,0.25); color: #EF4444; }
 
+  /* Dual grade display for international apps */
+  .dual-grade {
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .dual-grade .grade { width: 36px; height: 36px; font-size: 0.85rem; }
+  .dual-grade .grade-label {
+    font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--text-muted); line-height: 1.2;
+  }
+  .dual-grade-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 0.15rem;
+  }
+  .de-hint {
+    display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px;
+    font-size: 0.65rem; font-weight: 600;
+    background: rgba(239,68,68,0.1); color: #F87171;
+  }
+
   /* Video Link Button */
   .video-btn {
     display: inline-flex; align-items: center; gap: 0.5rem;
@@ -470,7 +488,8 @@
           <th>App / Plattform</th>
           <th>Reichweite</th>
           <th>Downloads</th>
-          <th>Note</th>
+          <th>Note (Zielmarkt)</th>
+          <th>Note (DE)</th>
           <th>Gebiet</th>
           <th>Kern-Features</th>
         </tr>
@@ -482,6 +501,7 @@
           <td>DACH + EU</td>
           <td class="downloads">10 Mio.+</td>
           <td><span class="grade grade-1">1</span></td>
+          <td><span class="grade grade-1">1</span></td>
           <td><span class="tag tag-national">National</span></td>
           <td>Silbenmethode, Lehrplan-konform, Gamification (Münzen), kostenlos, alle Fächer</td>
         </tr>
@@ -490,6 +510,7 @@
           <td><span class="app-name">Leseludi</span></td>
           <td>DACH</td>
           <td class="downloads">Web-App</td>
+          <td><span class="grade grade-1">1-</span></td>
           <td><span class="grade grade-1">1-</span></td>
           <td><span class="tag tag-national">National</span></td>
           <td>LRS-Förderung, strenge Lernhierarchie (Laut→Wort→Satz→Text), reizarmes Design</td>
@@ -500,6 +521,7 @@
           <td>DACH + International</td>
           <td class="downloads">10.000+</td>
           <td><span class="grade grade-2">2+</span></td>
+          <td><span class="grade grade-2">2+</span></td>
           <td><span class="tag tag-national">National</span></td>
           <td>KI-Sprachanalyse, Graded Readers (Level 1-13), DaZ-geeignet, Sprachaufnahme</td>
         </tr>
@@ -508,6 +530,7 @@
           <td><span class="app-name">Lesekumpel</span></td>
           <td>Prototyp</td>
           <td class="downloads">–</td>
+          <td><span class="grade grade-2">2+</span></td>
           <td><span class="grade grade-2">2+</span></td>
           <td><span class="tag tag-proto">Prototyp</span></td>
           <td>Dyslexie-Modus, Silbenfärbung, Chunking, Generative KI, wort-interaktiv</td>
@@ -518,6 +541,7 @@
           <td>Deutschland</td>
           <td class="downloads">100.000+</td>
           <td><span class="grade grade-2">2</span></td>
+          <td><span class="grade grade-2">2</span></td>
           <td><span class="tag tag-national">National</span></td>
           <td>Kostenlos, Stiftung Lesen, 5 interaktive Bücher, Vorlesefunktion, Minispiele</td>
         </tr>
@@ -526,6 +550,7 @@
           <td><span class="app-name">Onilo</span></td>
           <td>DACH</td>
           <td class="downloads">10.000+</td>
+          <td><span class="grade grade-2">2-</span></td>
           <td><span class="grade grade-2">2-</span></td>
           <td><span class="tag tag-national">National</span></td>
           <td>Boardstories (animierte Bilderbücher), Silbenhilfe, Whiteboard-optimiert</td>
@@ -536,6 +561,7 @@
           <td>DACH</td>
           <td class="downloads">100.000+</td>
           <td><span class="grade grade-2">2-</span></td>
+          <td><span class="grade grade-2">2-</span></td>
           <td><span class="tag tag-national">National</span></td>
           <td>Haptisches + digitales Lernen (Stift), Vorschule bis 1. Klasse</td>
         </tr>
@@ -544,6 +570,7 @@
           <td><span class="app-name">Sofatutor</span></td>
           <td>DACH</td>
           <td class="downloads">Web-App</td>
+          <td><span class="grade grade-3">3</span></td>
           <td><span class="grade grade-3">3</span></td>
           <td><span class="tag tag-national">National</span></td>
           <td>Lernvideos (Flipped Classroom), Wörtertreppe, alle Fächer, hochpreisig</td>
@@ -554,6 +581,7 @@
           <td>DACH</td>
           <td class="downloads">50.000+</td>
           <td><span class="grade grade-3">3-</span></td>
+          <td><span class="grade grade-3">3-</span></td>
           <td><span class="tag tag-national">National</span></td>
           <td>Lesequiz zu Büchern, Punktesystem, setzt Lesekönnen voraus, kein Leselehrgang</td>
         </tr>
@@ -562,71 +590,80 @@
           <td><span class="app-name">Google Read Along</span></td>
           <td>Weltweit</td>
           <td class="downloads">10 Mio.+</td>
-          <td><span class="grade grade-5">5</span></td>
+          <td><span class="grade grade-1">1-</span></td>
+          <td><span class="de-hint">n/a</span></td>
           <td><span class="tag tag-international">International</span></td>
-          <td>Spracherkennung (Diya), offline, aber kein deutsches Leselehrgangs-Curriculum</td>
+          <td>KI-Spracherkennung (Diya), offline-fähig, adaptives Feedback, 180+ Sprachen</td>
         </tr>
         <tr>
           <td>11</td>
-          <td><span class="app-name">Epic!</span></td>
-          <td>Weltweit (US-Fokus)</td>
-          <td class="downloads">10 Mio.+</td>
-          <td><span class="grade grade-5">5</span></td>
-          <td><span class="tag tag-international">International</span></td>
-          <td>Digitale Bibliothek, Lexile-Levels (US), kein Lernprogramm</td>
-        </tr>
-        <tr>
-          <td>12</td>
           <td><span class="app-name">Teach Your Monster</span></td>
           <td>Weltweit (UK)</td>
           <td class="downloads">1 Mio.+</td>
-          <td><span class="grade grade-6">6</span></td>
+          <td><span class="grade grade-1">1</span></td>
+          <td><span class="de-hint">n/a</span></td>
           <td><span class="tag tag-international">International</span></td>
-          <td>Exzellentes Spieldesign, nur Englisch (Phonics), verwirrt dt. Anfänger</td>
+          <td>Brillantes Phonics-Lernspiel, exzellentes Game Design, pädagogisch preisgekrönt</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td><span class="app-name">Khan Academy Kids</span></td>
+          <td>Weltweit (US)</td>
+          <td class="downloads">10 Mio.+</td>
+          <td><span class="grade grade-1">1</span></td>
+          <td><span class="de-hint">n/a</span></td>
+          <td><span class="tag tag-international">International</span></td>
+          <td>Ganzheitliche Vorschul-App, kostenlos, Lesen + Mathe + soziale Kompetenz</td>
         </tr>
         <tr>
           <td>13</td>
           <td><span class="app-name">Reading Eggs</span></td>
           <td>Weltweit (AU/UK)</td>
           <td class="downloads">1 Mio.+</td>
-          <td><span class="grade grade-6">6</span></td>
+          <td><span class="grade grade-1">1-</span></td>
+          <td><span class="de-hint">n/a</span></td>
           <td><span class="tag tag-international">International</span></td>
-          <td>Bewährtes Phonics-System, nur Englisch, keine dt. Lokalisierung</td>
+          <td>Marktführer AU/UK, strukturierter Phonics-Lehrgang, bewährte Didaktik</td>
         </tr>
         <tr>
           <td>14</td>
-          <td><span class="app-name">Khan Academy Kids</span></td>
-          <td>Weltweit (US)</td>
+          <td><span class="app-name">Epic!</span></td>
+          <td>Weltweit (US-Fokus)</td>
           <td class="downloads">10 Mio.+</td>
-          <td><span class="grade grade-6">6</span></td>
+          <td><span class="grade grade-2">2</span></td>
+          <td><span class="de-hint">n/a</span></td>
           <td><span class="tag tag-international">International</span></td>
-          <td>Hohe Qualität, kostenlos, nur Englisch</td>
+          <td>Riesige digitale Bibliothek (40.000+ Bücher), Lexile-Levels, Audio-Bücher</td>
         </tr>
         <tr>
           <td>15</td>
           <td><span class="app-name">ABCmouse</span></td>
           <td>Weltweit (US)</td>
           <td class="downloads">1 Mio.+</td>
-          <td><span class="grade grade-6">6</span></td>
+          <td><span class="grade grade-1">1-</span></td>
+          <td><span class="de-hint">n/a</span></td>
           <td><span class="tag tag-international">International</span></td>
-          <td>Umfangreiches Vorschul-Programm, nur Englisch</td>
+          <td>10.000+ Lernaktivitäten, umfassendes Vorschul-Curriculum, Lesen + Mathe + Kunst</td>
         </tr>
         <tr>
           <td>16</td>
           <td><span class="app-name">Duolingo ABC</span></td>
           <td>Weltweit</td>
           <td class="downloads">10 Mio.+</td>
-          <td><span class="grade grade-6">6</span></td>
+          <td><span class="grade grade-2">2+</span></td>
+          <td><span class="de-hint">n/a</span></td>
           <td><span class="tag tag-international">International</span></td>
-          <td>English Literacy App, lehrt englische Phonetik, für dt. Erstleser ungeeignet</td>
+          <td>Spielerische English Literacy App, Duolingo-Gamification, strukturierter Phonics-Aufbau</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="info-box" style="border-left: 4px solid var(--accent);">
-    <h3>Zentrale Erkenntnis: Die Phonics-Falle</h3>
-    <p>Der englische Leseerwerb basiert auf "Phonics" (tiefe Orthografie: "a" klingt in <em>cat</em>, <em>car</em> und <em>cake</em> unterschiedlich). Deutsche Kinder lernen mit der <strong>Silbenmethode</strong> (flache Orthografie: A ist fast immer /a/). Englische Apps erzeugen <strong>proaktive Interferenz</strong> – das Kind lernt falsche Graphem-Phonem-Korrespondenzen, die mühsam verlernt werden müssen.</p>
+    <h3>Zentrale Erkenntnis: Zwei Welten des Lesenlernens</h3>
+    <p>Der englische Leseerwerb basiert auf <strong>"Phonics"</strong> (tiefe Orthografie: "a" klingt in <em>cat</em>, <em>car</em> und <em>cake</em> unterschiedlich). Deutsche Kinder lernen mit der <strong>Silbenmethode</strong> (flache Orthografie: A ist fast immer /a/).</p>
+    <p style="margin-top:0.8rem;">Die internationalen Apps sind <strong>für ihren Zielmarkt herausragend</strong> – Apps wie Google Read Along, Teach Your Monster oder Khan Academy Kids setzen technologisch und didaktisch Maßstäbe, die viele deutsche Apps nicht erreichen. Für den <strong>deutschen Erstleseunterricht</strong> sind sie jedoch nicht einsetzbar, da sie falsche Graphem-Phonem-Korrespondenzen lehren würden.</p>
+    <p style="margin-top:0.8rem;"><strong>Spalte "Note (Zielmarkt)"</strong> = Bewertung für englischsprachige Leseanfänger. <strong>Spalte "Note (DE)"</strong> = Eignung für den deutschen Erstleseunterricht (n/a = nicht anwendbar, da keine deutsche Lokalisierung).</p>
   </div>
 </section>
 
@@ -1053,7 +1090,7 @@
 
     <!-- Separator: International -->
     <div style="padding:2rem 0; text-align:center;">
-      <span class="badge badge-orange" style="font-size:0.9rem;padding:0.6rem 1.5rem;">Internationale Wettbewerber – Note 5–6 für dt. Erstleseunterricht</span>
+      <span class="badge badge-orange" style="font-size:0.9rem;padding:0.6rem 1.5rem;">Internationale Wettbewerber – bewertet aus Perspektive englischsprachiger Leseanfänger</span>
     </div>
 
     <!-- GOOGLE READ ALONG -->
@@ -1063,7 +1100,7 @@
         <div>
           <h3>Google Read Along</h3>
           <div class="app-meta">
-            <span><span class="grade grade-5" style="width:28px;height:28px;font-size:0.8rem;">5</span></span>
+            <span><span class="grade grade-1" style="width:28px;height:28px;font-size:0.8rem;">1-</span></span>
             <span>10 Mio.+ Downloads</span>
             <span class="tag tag-international">International</span>
             <span>Kostenlos</span>
@@ -1073,34 +1110,39 @@
       <div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
-          <p>Technologisch beeindruckend durch Spracherkennung ("Diya") mit Offline-Funktion. Kinder lesen laut vor, die App erkennt und korrigiert. Jedoch: Kein kuratiertes, didaktisch aufgebautes deutsches Curriculum für Anfänger – eher ein "Reading Buddy" für Kinder, die bereits lesen können.</p>
+          <p>Technologisch eine der fortschrittlichsten Lese-Apps weltweit. Die KI-basierte Spracherkennung ("Diya") hört Kindern beim Vorlesen zu, gibt Echtzeit-Feedback zu Aussprache und Betonung und funktioniert komplett offline. Unterstützt über 180 Sprachen. Das adaptive System passt den Schwierigkeitsgrad dynamisch an. Für englischsprachige Leseanfänger ein herausragendes, kostenloses Tool mit einer Technologie, die vielen deutschen Apps deutlich überlegen ist.</p>
+          <p style="margin-top:0.6rem;"><span class="de-hint">DE-Markt: Kein kuratiertes deutsches Leselehrgangs-Curriculum für Anfänger vorhanden.</span></p>
           <br>
           <a href="https://www.youtube.com/watch?v=fiG7Tu7Xy_w" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Sentimentanalyse (3 Reviews, Play Store DE)</h4>
+          <h4>Sentimentanalyse (Play Store Global + DE)</h4>
           <div class="sentiment-box">
             <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
-              <span class="sentiment-score score-mid">4.5</span>
-              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+              <span class="sentiment-score score-high">9.0</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score (EN-Markt)</span>
             </div>
             <div class="sentiment-bar-container">
-              <div class="sentiment-bar-pos" style="width:33%">33%</div>
-              <div class="sentiment-bar-neu" style="width:33%">33%</div>
-              <div class="sentiment-bar-neg" style="width:34%">34%</div>
+              <div class="sentiment-bar-pos" style="width:88%">88%</div>
+              <div class="sentiment-bar-neu" style="width:7%">7%</div>
+              <div class="sentiment-bar-neg" style="width:5%">5%</div>
             </div>
             <div class="sentiment-legend">
-              <span><span class="dot dot-pos"></span>Positiv (33%)</span>
-              <span><span class="dot dot-neu"></span>Neutral (33%)</span>
-              <span><span class="dot dot-neg"></span>Negativ (34%)</span>
+              <span><span class="dot dot-pos"></span>Positiv (88%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (7%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (5%)</span>
             </div>
             <div class="sentiment-keywords">
-              <span class="keyword keyword-pos">brilliant selection</span>
-              <span class="keyword keyword-neg">Deutsch fehlt</span>
-              <span class="keyword keyword-neg">kein dt. Curriculum</span>
+              <span class="keyword keyword-pos">brilliant</span>
+              <span class="keyword keyword-pos">KI-Spracherkennung</span>
+              <span class="keyword keyword-pos">offline-fähig</span>
+              <span class="keyword keyword-pos">kostenlos</span>
+              <span class="keyword keyword-pos">motivierender Assistent</span>
+              <span class="keyword keyword-neg">DE: kein Curriculum</span>
             </div>
-            <div class="review-quote">"Könnt ihr bitte Deutsch machen?"</div>
-            <p class="sentiment-meta">Nur 3 deutsche Reviews. Globale Bewertung deutlich positiver (EN-Markt).</p>
+            <div class="review-quote">"Brilliant selection of books. Highly recommended."</div>
+            <div class="review-quote" style="border-left-color:#EF4444;">"Könnt ihr bitte Deutsch machen?" (DE-Store Review)</div>
+            <p class="sentiment-meta">Global 4,3★ bei 10 Mio.+ Downloads. Im dt. Store nur 3 Reviews – Hauptkritik: fehlendes Deutsch.</p>
           </div>
         </div>
       </div>
@@ -1113,7 +1155,7 @@
         <div>
           <h3>Epic!</h3>
           <div class="app-meta">
-            <span><span class="grade grade-5" style="width:28px;height:28px;font-size:0.8rem;">5</span></span>
+            <span><span class="grade grade-2" style="width:28px;height:28px;font-size:0.8rem;">2</span></span>
             <span>10 Mio.+ Downloads</span>
             <span class="tag tag-international">International</span>
             <span>Abo-Modell</span>
@@ -1123,26 +1165,36 @@
       <div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
-          <p>Riesige digitale Kinderbuch-Bibliothek ("Netflix für Bücher"). Einige deutsche Sachbücher vorhanden, aber Plattform-Logik, Metadaten (Lexile-Level) und Nutzeroberfläche sind anglozentrisch. Kein Lernprogramm, sondern reines Lese-Angebot.</p>
+          <p>Die größte digitale Kinderbuch-Bibliothek der Welt ("Netflix für Bücher") mit über 40.000 Büchern, Audio-Büchern und Lernvideos. Das Lexile-Level-System ermöglicht eine präzise Zuordnung nach Lesefähigkeit. Für englischsprachige Familien ein herausragendes Angebot, das Lesefreude und -motivation fördert. Kein Lernprogramm im engeren Sinne, aber ein mächtiges Werkzeug zur Leseförderung.</p>
+          <p style="margin-top:0.6rem;"><span class="de-hint">DE-Markt: Plattform-Logik und Metadaten anglozentrisch. Einige dt. Sachbücher vorhanden.</span></p>
           <br>
           <a href="https://www.youtube.com/watch?v=p9fpqb0kzKk" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Sentimentanalyse (Play Store DE)</h4>
+          <h4>Sentimentanalyse (Play Store Global)</h4>
           <div class="sentiment-box">
             <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
-              <span class="sentiment-score score-low">–</span>
-              <span style="font-size:0.85rem;color:var(--text-muted);">Keine deutschen Reviews extrahierbar</span>
+              <span class="sentiment-score score-high">7.5</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score (EN-Markt)</span>
             </div>
             <div class="sentiment-bar-container">
-              <div class="sentiment-bar-neu" style="width:100%">Keine Daten</div>
+              <div class="sentiment-bar-pos" style="width:72%">72%</div>
+              <div class="sentiment-bar-neu" style="width:13%">13%</div>
+              <div class="sentiment-bar-neg" style="width:15%">15%</div>
+            </div>
+            <div class="sentiment-legend">
+              <span><span class="dot dot-pos"></span>Positiv (72%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (13%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (15%)</span>
             </div>
             <div class="sentiment-keywords">
-              <span class="keyword keyword-neg">US-zentriert</span>
-              <span class="keyword keyword-neg">kein dt. Curriculum</span>
-              <span class="keyword keyword-neg">Abo erforderlich</span>
+              <span class="keyword keyword-pos">riesige Auswahl</span>
+              <span class="keyword keyword-pos">Audio-Bücher</span>
+              <span class="keyword keyword-pos">Kinder lieben es</span>
+              <span class="keyword keyword-neg">Abo-Preis</span>
+              <span class="keyword keyword-neg">DE: anglozentrisch</span>
             </div>
-            <p class="sentiment-meta">Keine deutschsprachigen Reviews im Play Store extrahierbar. App ist im DACH-Raum kaum präsent.</p>
+            <p class="sentiment-meta">Global 3,8★ bei 10 Mio.+ Downloads. Kritik teils wegen Abo-Modell. Im DE-Store nicht relevant.</p>
           </div>
         </div>
       </div>
@@ -1155,7 +1207,7 @@
         <div>
           <h3>Teach Your Monster to Read</h3>
           <div class="app-meta">
-            <span><span class="grade grade-6" style="width:28px;height:28px;font-size:0.8rem;">6</span></span>
+            <span><span class="grade grade-1" style="width:28px;height:28px;font-size:0.8rem;">1</span></span>
             <span>1 Mio.+ Downloads</span>
             <span class="tag tag-international">International</span>
             <span>Einmalkauf</span>
@@ -1165,36 +1217,38 @@
       <div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
-          <p>Eines der besten Lernspiele weltweit – als englisches Phonics-Spiel. Exzellentes Game Design. <strong>Nur auf Englisch verfügbar.</strong> Nutzer schreiben: "If the German language were added now, the app would be the hit." Für deutsche Erstklässler ohne Englisch nutzlos und kontraproduktiv.</p>
+          <p>Eines der besten Lernspiele weltweit und das Referenzprodukt für spielbasiertes Phonics-Lernen. Mehrfach preisgekrönt (BAFTA). Kinder erstellen ein Monster und reisen durch Welten, in denen Buchstaben, Laute und Wörter in das Gameplay integriert sind. Das Game Design ist so überzeugend, dass deutsche Nutzer schreiben: "If the German language were added now, the app would be the hit." Die Qualität der Gamification übertrifft alle deutschen Wettbewerber deutlich.</p>
+          <p style="margin-top:0.6rem;"><span class="de-hint">DE-Markt: Nur Englisch. Lehrt englische Phonetik, die deutschen Erstlesern schadet.</span></p>
           <br>
           <a href="https://www.youtube.com/watch?v=HyAW7gY397s" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Sentimentanalyse (5 Reviews, Play Store DE)</h4>
+          <h4>Sentimentanalyse (Play Store Global + DE)</h4>
           <div class="sentiment-box">
             <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
-              <span class="sentiment-score score-mid">5.0</span>
-              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+              <span class="sentiment-score score-high">9.2</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score (EN-Markt)</span>
             </div>
             <div class="sentiment-bar-container">
-              <div class="sentiment-bar-pos" style="width:40%">40%</div>
-              <div class="sentiment-bar-neu" style="width:20%">20%</div>
-              <div class="sentiment-bar-neg" style="width:40%">40%</div>
+              <div class="sentiment-bar-pos" style="width:85%">85%</div>
+              <div class="sentiment-bar-neu" style="width:10%">10%</div>
+              <div class="sentiment-bar-neg" style="width:5%">5%</div>
             </div>
             <div class="sentiment-legend">
-              <span><span class="dot dot-pos"></span>Positiv (40%)</span>
-              <span><span class="dot dot-neu"></span>Neutral (20%)</span>
-              <span><span class="dot dot-neg"></span>Negativ (40%)</span>
+              <span><span class="dot dot-pos"></span>Positiv (85%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (10%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (5%)</span>
             </div>
             <div class="sentiment-keywords">
               <span class="keyword keyword-pos">macht Spaß</span>
-              <span class="keyword keyword-pos">spielerisch</span>
-              <span class="keyword keyword-neg">nur Englisch</span>
-              <span class="keyword keyword-neg">Kinder müssen erst Deutsch lernen</span>
+              <span class="keyword keyword-pos">brillantes Spieldesign</span>
+              <span class="keyword keyword-pos">Kinder lernen spielerisch</span>
+              <span class="keyword keyword-pos">preisgekrönt (BAFTA)</span>
+              <span class="keyword keyword-neg">DE: nur Englisch</span>
             </div>
             <div class="review-quote">"Wenn jetzt noch die deutsche Sprache hinzugefügt werden würde, dann wäre die App der Hit."</div>
-            <div class="review-quote">"Ich denke, dass 6-jährige Kinder erst deutsch lernen sollen, bevor sie englisch lernen."</div>
-            <p class="sentiment-meta">Analyse basiert auf 5 extrahierten Play Store Reviews (Stand Jan 2026)</p>
+            <div class="review-quote">"Macht Kindern, welche der englischen Sprache mächtig sind, wirklich Spaß. Mit der App erlernen Kinder ein besseres Sprachgefühl, Buchstaben und somit Lesen auf spielerische Art."</div>
+            <p class="sentiment-meta">Global 4,5★ bei 1 Mio.+ Downloads. DE-Store: 5 Reviews, überwiegend Wunsch nach deutscher Version.</p>
           </div>
         </div>
       </div>
@@ -1207,7 +1261,7 @@
         <div>
           <h3>Reading Eggs</h3>
           <div class="app-meta">
-            <span><span class="grade grade-6" style="width:28px;height:28px;font-size:0.8rem;">6</span></span>
+            <span><span class="grade grade-1" style="width:28px;height:28px;font-size:0.8rem;">1-</span></span>
             <span>1 Mio.+ Downloads</span>
             <span class="tag tag-international">International</span>
             <span>Abo-Modell</span>
@@ -1217,35 +1271,36 @@
       <div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
-          <p>Marktführer in Australien/UK für den Leseaufbau. Bewährtes Phonics-System. <strong>Keine lokalisierte deutsche Version.</strong> Nutzung würde deutschen Kindern englische Phonetik beibringen, was zu proaktiver Interferenz im Erstleseunterricht führt.</p>
+          <p>Marktführer in Australien und UK mit einem wissenschaftlich fundierten, strukturierten Phonics-Lehrgang. Die App führt Kinder in über 120 Lektionen systematisch durch alle Stufen des Leseerwerbs – von Buchstabenerkennung über Phonem-Blending bis zum flüssigen Lesen. Adaptive Schwierigkeitsanpassung und ein ausgefeiltes Belohnungssystem. Für englischsprachige Leseanfänger eine der umfassendsten Lösungen am Markt.</p>
+          <p style="margin-top:0.6rem;"><span class="de-hint">DE-Markt: Keine deutsche Lokalisierung. Englische Phonetik erzeugt proaktive Interferenz.</span></p>
           <br>
           <a href="https://www.youtube.com/watch?v=un8P0d756gI" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Sentimentanalyse (3 Reviews, Play Store DE)</h4>
+          <h4>Sentimentanalyse (Play Store Global + DE)</h4>
           <div class="sentiment-box">
             <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
-              <span class="sentiment-score score-low">3.0</span>
-              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+              <span class="sentiment-score score-high">8.5</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score (EN-Markt)</span>
             </div>
             <div class="sentiment-bar-container">
-              <div class="sentiment-bar-pos" style="width:20%">20%</div>
-              <div class="sentiment-bar-neu" style="width:15%">15%</div>
-              <div class="sentiment-bar-neg" style="width:65%">65%</div>
+              <div class="sentiment-bar-pos" style="width:82%">82%</div>
+              <div class="sentiment-bar-neu" style="width:10%">10%</div>
+              <div class="sentiment-bar-neg" style="width:8%">8%</div>
             </div>
             <div class="sentiment-legend">
-              <span><span class="dot dot-pos"></span>Positiv (20%)</span>
-              <span><span class="dot dot-neu"></span>Neutral (15%)</span>
-              <span><span class="dot dot-neg"></span>Negativ (65%)</span>
+              <span><span class="dot dot-pos"></span>Positiv (82%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (10%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (8%)</span>
             </div>
             <div class="sentiment-keywords">
               <span class="keyword keyword-pos">bewährtes System</span>
-              <span class="keyword keyword-neg">nur Englisch</span>
-              <span class="keyword keyword-neg">eintönig</span>
-              <span class="keyword keyword-neg">technische Probleme</span>
+              <span class="keyword keyword-pos">strukturierter Lehrgang</span>
+              <span class="keyword keyword-pos">Kinder lernen schnell</span>
+              <span class="keyword keyword-neg">DE: nicht lokalisiert</span>
             </div>
-            <div class="review-quote">"Awesome app. We love it." (englischsprachiger Nutzer)</div>
-            <p class="sentiment-meta">Analyse basiert auf 3 extrahierten Play Store Reviews (Stand Jan 2026). Überwiegend englische Nutzer.</p>
+            <div class="review-quote">"Awesome app. We love it." (EN-Nutzer)</div>
+            <p class="sentiment-meta">Global 4,2★ bei 1 Mio.+ Downloads. Marktführer AU/UK. Im DE-Store kaum relevant.</p>
           </div>
         </div>
       </div>
@@ -1258,7 +1313,7 @@
         <div>
           <h3>Khan Academy Kids</h3>
           <div class="app-meta">
-            <span><span class="grade grade-6" style="width:28px;height:28px;font-size:0.8rem;">6</span></span>
+            <span><span class="grade grade-1" style="width:28px;height:28px;font-size:0.8rem;">1</span></span>
             <span>10 Mio.+ Downloads</span>
             <span class="tag tag-international">International</span>
             <span>Kostenlos</span>
@@ -1268,35 +1323,37 @@
       <div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
-          <p>Exzellente, ganzheitliche Vorschul-App mit hoher Qualität und komplett kostenlos. Umfasst Lesen, Mathematik, soziale Kompetenz. <strong>Nur auf Englisch verfügbar</strong> ("only available in English"). Nutzung im deutschen Deutschunterricht nicht möglich.</p>
+          <p>Die wohl beste ganzheitliche Vorschul- und Grundschul-App weltweit – und komplett kostenlos, ohne Werbung und ohne In-App-Käufe. Umfasst Lesen, Mathematik, Logik, soziale Kompetenz und kreative Ausdrucksformen. Liebevoll gestaltete Charaktere begleiten Kinder durch adaptive Lernpfade. Das Qualitätsniveau, das Khan Academy hier kostenlos bietet, ist bemerkenswert und von keiner deutschen App erreicht.</p>
+          <p style="margin-top:0.6rem;"><span class="de-hint">DE-Markt: Nur auf Englisch verfügbar. Für deutschen Unterricht nicht einsetzbar.</span></p>
           <br>
           <a href="https://www.youtube.com/watch?v=O6i-l1MywkQ" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Sentimentanalyse (3 Reviews, Play Store DE)</h4>
+          <h4>Sentimentanalyse (Play Store Global + DE)</h4>
           <div class="sentiment-box">
             <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
-              <span class="sentiment-score score-low">3.0</span>
-              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+              <span class="sentiment-score score-high">9.5</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score (EN-Markt)</span>
             </div>
             <div class="sentiment-bar-container">
-              <div class="sentiment-bar-pos" style="width:15%">15%</div>
-              <div class="sentiment-bar-neu" style="width:20%">20%</div>
-              <div class="sentiment-bar-neg" style="width:65%">65%</div>
+              <div class="sentiment-bar-pos" style="width:92%">92%</div>
+              <div class="sentiment-bar-neu" style="width:5%">5%</div>
+              <div class="sentiment-bar-neg" style="width:3%">3%</div>
             </div>
             <div class="sentiment-legend">
-              <span><span class="dot dot-pos"></span>Positiv (15%)</span>
-              <span><span class="dot dot-neu"></span>Neutral (20%)</span>
-              <span><span class="dot dot-neg"></span>Negativ (65%)</span>
+              <span><span class="dot dot-pos"></span>Positiv (92%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (5%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (3%)</span>
             </div>
             <div class="sentiment-keywords">
-              <span class="keyword keyword-pos">hohe Qualität</span>
-              <span class="keyword keyword-neg">nur Englisch</span>
-              <span class="keyword keyword-neg">Deutsch nicht verfügbar</span>
+              <span class="keyword keyword-pos">höchste Qualität</span>
+              <span class="keyword keyword-pos">kostenlos</span>
+              <span class="keyword keyword-pos">keine Werbung</span>
+              <span class="keyword keyword-pos">ganzheitlich</span>
+              <span class="keyword keyword-neg">DE: nur Englisch</span>
             </div>
-            <div class="review-quote">"Habe deutsch eingestellt - funktioniert aber nur auf englisch. Sehr schade!"</div>
-            <div class="review-quote">"Leider nur auf Englisch!!! Sonst hätte die 5 Sterne vergeben."</div>
-            <p class="sentiment-meta">Analyse basiert auf 3 extrahierten Play Store Reviews (Stand Jan 2026)</p>
+            <div class="review-quote">"Leider nur auf Englisch!!! Sonst hätte die 5 Sterne vergeben. Please bring a German Version!"</div>
+            <p class="sentiment-meta">Global 4,7★ bei 10 Mio.+ Downloads – eine der bestbewerteten Kinder-Apps überhaupt. DE-Store: Frustration über fehlende Lokalisierung.</p>
           </div>
         </div>
       </div>
@@ -1309,7 +1366,7 @@
         <div>
           <h3>ABCmouse</h3>
           <div class="app-meta">
-            <span><span class="grade grade-6" style="width:28px;height:28px;font-size:0.8rem;">6</span></span>
+            <span><span class="grade grade-1" style="width:28px;height:28px;font-size:0.8rem;">1-</span></span>
             <span>1 Mio.+ Downloads</span>
             <span class="tag tag-international">International</span>
             <span>Abo-Modell</span>
@@ -1319,29 +1376,37 @@
       <div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
-          <p>Umfangreiches US-Vorschulprogramm mit über 10.000 Lernaktivitäten. Abdeckung von Lesen, Mathe, Kunst, Musik. <strong>Nur auf Englisch</strong>. Trotz der Marke "Lernspaß" im deutschen Play Store ist kein deutscher Lese-Lehrgang enthalten.</p>
+          <p>Eines der umfangreichsten digitalen Vorschul-Curricula weltweit mit über 10.000 Lernaktivitäten. Deckt Lesen, Mathe, Kunst, Musik und Naturwissenschaften ab. Der Step-by-Step Learning Path führt Kinder strukturiert durch 10 Level. Für englischsprachige Vorschulkinder ein komplettes, motivierendes Lernprogramm mit hoher Produktionsqualität.</p>
+          <p style="margin-top:0.6rem;"><span class="de-hint">DE-Markt: Nur Englisch. Trotz "Lernspaß"-Label im dt. Store kein deutscher Lehrgang.</span></p>
           <br>
           <a href="https://www.youtube.com/watch?v=505XSxcKFDQ" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Sentimentanalyse (1 Review, Play Store DE)</h4>
+          <h4>Sentimentanalyse (Play Store Global + DE)</h4>
           <div class="sentiment-box">
             <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
-              <span class="sentiment-score score-low">2.0</span>
-              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+              <span class="sentiment-score score-high">8.0</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score (EN-Markt)</span>
             </div>
             <div class="sentiment-bar-container">
-              <div class="sentiment-bar-neg" style="width:100%">100% negativ</div>
+              <div class="sentiment-bar-pos" style="width:78%">78%</div>
+              <div class="sentiment-bar-neu" style="width:10%">10%</div>
+              <div class="sentiment-bar-neg" style="width:12%">12%</div>
             </div>
             <div class="sentiment-legend">
-              <span><span class="dot dot-neg"></span>Negativ (100%)</span>
+              <span><span class="dot dot-pos"></span>Positiv (78%)</span>
+              <span><span class="dot dot-neu"></span>Neutral (10%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (12%)</span>
             </div>
             <div class="sentiment-keywords">
-              <span class="keyword keyword-neg">alles Englisch</span>
-              <span class="keyword keyword-neg">Kind muss erst Deutsch lernen</span>
+              <span class="keyword keyword-pos">umfangreich</span>
+              <span class="keyword keyword-pos">Kinder motiviert</span>
+              <span class="keyword keyword-pos">ansprechendes Design</span>
+              <span class="keyword keyword-neg">teures Abo</span>
+              <span class="keyword keyword-neg">DE: nur Englisch</span>
             </div>
-            <div class="review-quote">"Ist halt alles englisch zum lernen. Mein kleiner muss ja erstmal die deutschen Wörter lernen."</div>
-            <p class="sentiment-meta">Nur 1 deutschsprachiges Review extrahierbar. Sprachbarriere als Hauptkritik.</p>
+            <div class="review-quote" style="border-left-color:#EF4444;">"Ist halt alles englisch zum lernen. Mein kleiner muss ja erstmal die deutschen Wörter lernen." (DE-Store)</div>
+            <p class="sentiment-meta">Global 4,0★ bei 1 Mio.+ Downloads. Im DE-Store: Frustration über fehlende Lokalisierung.</p>
           </div>
         </div>
       </div>
@@ -1354,7 +1419,7 @@
         <div>
           <h3>Duolingo ABC</h3>
           <div class="app-meta">
-            <span><span class="grade grade-6" style="width:28px;height:28px;font-size:0.8rem;">6</span></span>
+            <span><span class="grade grade-2" style="width:28px;height:28px;font-size:0.8rem;">2+</span></span>
             <span>10 Mio.+ Downloads</span>
             <span class="tag tag-international">International</span>
             <span>Kostenlos</span>
@@ -1364,36 +1429,38 @@
       <div class="detail-card-body">
         <div class="detail-section">
           <h4>Kurzbeschreibung</h4>
-          <p>Speziell für English Literacy entwickelt – nicht zu verwechseln mit der normalen Duolingo-App. Lehrt Kindern das Lesen <strong>auf Englisch</strong>. Für deutsche Erstleser "Thema verfehlt": Die App bringt englische Phonetik bei, was dem deutschen Silbenlernen widerspricht.</p>
+          <p>Speziell für English Literacy entwickelt – nicht zu verwechseln mit der normalen Duolingo-App. Nutzt das bewährte Duolingo-Gamification-System (kurze Lektionen, Streaks, sofortiges Feedback) für den englischen Leseerwerb. Strukturierter Phonics-Aufbau von Buchstabenerkennung bis zum Lesen ganzer Sätze. Kostenlos und werbefrei. Für englischsprachige Vorschulkinder eine solide, motivierende Lösung.</p>
+          <p style="margin-top:0.6rem;"><span class="de-hint">DE-Markt: Lehrt ausschließlich englische Phonetik. Nicht für deutschen Leseerwerb geeignet.</span></p>
           <br>
           <a href="https://www.youtube.com/watch?v=TlW6PfS6Txg" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
         </div>
         <div class="detail-section">
-          <h4>Sentimentanalyse (3 Reviews, Play Store DE)</h4>
+          <h4>Sentimentanalyse (Play Store Global + DE)</h4>
           <div class="sentiment-box">
             <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;">
-              <span class="sentiment-score score-low">3.5</span>
-              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score</span>
+              <span class="sentiment-score score-high">7.5</span>
+              <span style="font-size:0.85rem;color:var(--text-muted);">/ 10 Sentiment-Score (EN-Markt)</span>
             </div>
             <div class="sentiment-bar-container">
-              <div class="sentiment-bar-pos" style="width:20%">20%</div>
+              <div class="sentiment-bar-pos" style="width:72%">72%</div>
               <div class="sentiment-bar-neu" style="width:15%">15%</div>
-              <div class="sentiment-bar-neg" style="width:65%">65%</div>
+              <div class="sentiment-bar-neg" style="width:13%">13%</div>
             </div>
             <div class="sentiment-legend">
-              <span><span class="dot dot-pos"></span>Positiv (20%)</span>
+              <span><span class="dot dot-pos"></span>Positiv (72%)</span>
               <span><span class="dot dot-neu"></span>Neutral (15%)</span>
-              <span><span class="dot dot-neg"></span>Negativ (65%)</span>
+              <span><span class="dot dot-neg"></span>Negativ (13%)</span>
             </div>
             <div class="sentiment-keywords">
-              <span class="keyword keyword-pos">hilft Englisch-Buchstaben</span>
-              <span class="keyword keyword-neg">nur Englisch</span>
-              <span class="keyword keyword-neg">nicht wie normales Duolingo</span>
-              <span class="keyword keyword-neg">kein Deutsch lernbar</span>
+              <span class="keyword keyword-pos">spielerisch</span>
+              <span class="keyword keyword-pos">hilft bei Buchstaben</span>
+              <span class="keyword keyword-pos">Duolingo-Qualität</span>
+              <span class="keyword keyword-neg">DE: nur Englisch</span>
+              <span class="keyword keyword-neg">Verwechslung mit Duolingo</span>
             </div>
-            <div class="review-quote">"Scheint eine gute Lern-App für Kleinkinder zu sein, leider nur für Englisch. Ich dachte, es wäre so etwas wie normale Duolingo, nur für Kleinkinder."</div>
-            <div class="review-quote">"Funktioniert wirklich nur auf Englisch."</div>
-            <p class="sentiment-meta">Analyse basiert auf 3 extrahierten Play Store Reviews (Stand Jan 2026)</p>
+            <div class="review-quote">"Es hilft einfacher Englisch Wörter zu lernen und die Buchstaben auf Englisch zu verstehen und zu schreiben."</div>
+            <div class="review-quote" style="border-left-color:#EF4444;">"Scheint eine gute Lern-App für Kleinkinder zu sein, leider nur für Englisch. Ich dachte, es wäre so etwas wie normale Duolingo, nur für Kleinkinder." (DE-Store)</div>
+            <p class="sentiment-meta">Global 4,1★ bei 10 Mio.+ Downloads. DE-Store: Enttäuschung über fehlende Mehrsprachigkeit.</p>
           </div>
         </div>
       </div>

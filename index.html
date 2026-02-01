@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wettbewerbsanalyse – Neuroinklusive LeselernApp</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --primary: #4F46E5;
+    --primary-light: #818CF8;
+    --primary-dark: #3730A3;
+    --accent: #F59E0B;
+    --accent2: #10B981;
+    --bg: #0F172A;
+    --bg2: #1E293B;
+    --bg3: #334155;
+    --text: #F8FAFC;
+    --text-muted: #94A3B8;
+    --danger: #EF4444;
+    --success: #10B981;
+    --gradient1: linear-gradient(135deg, #4F46E5, #7C3AED);
+    --gradient2: linear-gradient(135deg, #F59E0B, #EF4444);
+    --gradient3: linear-gradient(135deg, #10B981, #3B82F6);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(15,23,42,0.95); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 0.8rem 2rem;
+    display: flex; align-items: center; gap: 2rem;
+  }
+  nav .logo { font-weight: 800; font-size: 1.1rem; color: var(--primary-light); }
+  nav a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+  nav a:hover { color: var(--text); }
+  nav .nav-links { display: flex; gap: 1.5rem; }
+
+  /* Sections */
+  section {
+    min-height: 100vh; padding: 8rem 4rem 4rem;
+    max-width: 1400px; margin: 0 auto;
+  }
+
+  /* Title Slide */
+  .title-slide {
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; min-height: 100vh;
+  }
+  .title-slide h1 {
+    font-size: 3.5rem; font-weight: 900;
+    background: linear-gradient(135deg, #818CF8, #F59E0B);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1.15; margin-bottom: 1.5rem;
+  }
+  .title-slide .subtitle {
+    font-size: 1.3rem; color: var(--text-muted); max-width: 700px;
+    line-height: 1.6; margin-bottom: 2rem;
+  }
+  .title-slide .meta { font-size: 0.9rem; color: var(--text-muted); opacity: 0.6; }
+
+  /* Section Headers */
+  .section-header {
+    margin-bottom: 3rem;
+  }
+  .section-header .badge {
+    display: inline-block; padding: 0.4rem 1rem; border-radius: 100px;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .badge-blue { background: rgba(79,70,229,0.2); color: var(--primary-light); }
+  .badge-orange { background: rgba(245,158,11,0.2); color: var(--accent); }
+  .badge-green { background: rgba(16,185,129,0.2); color: var(--accent2); }
+
+  .section-header h2 {
+    font-size: 2.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.8rem;
+  }
+  .section-header p { font-size: 1.1rem; color: var(--text-muted); max-width: 800px; line-height: 1.7; }
+
+  /* Stat Cards */
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; margin-bottom: 3rem;
+  }
+  .stat-card {
+    background: var(--bg2); border-radius: 16px; padding: 1.8rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .stat-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+  .stat-card .number {
+    font-size: 2.4rem; font-weight: 900; margin-bottom: 0.3rem;
+  }
+  .stat-card .number.blue { color: var(--primary-light); }
+  .stat-card .number.orange { color: var(--accent); }
+  .stat-card .number.green { color: var(--accent2); }
+  .stat-card .number.red { color: var(--danger); }
+  .stat-card .label { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+  .stat-card .source { font-size: 0.7rem; color: var(--text-muted); opacity: 0.5; margin-top: 0.6rem; }
+
+  /* Info Boxes */
+  .info-box {
+    background: var(--bg2); border-radius: 16px; padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.05); margin-bottom: 1.5rem;
+  }
+  .info-box h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.8rem; }
+  .info-box p, .info-box li { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+  .info-box ul { padding-left: 1.2rem; }
+  .info-box li { margin-bottom: 0.4rem; }
+
+  /* Requirements Grid */
+  .req-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem; margin-bottom: 3rem;
+  }
+  .req-card {
+    background: var(--bg2); border-radius: 16px; padding: 2rem;
+    border-left: 4px solid var(--primary);
+  }
+  .req-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
+  .req-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* Competitor Overview Table */
+  .table-wrapper {
+    overflow-x: auto; border-radius: 16px;
+    background: var(--bg2); border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 3rem;
+  }
+  table {
+    width: 100%; border-collapse: collapse; font-size: 0.88rem;
+  }
+  thead { background: var(--bg3); }
+  th {
+    padding: 1rem 1.2rem; text-align: left; font-weight: 700;
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-muted); white-space: nowrap;
+  }
+  td {
+    padding: 0.9rem 1.2rem; border-top: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-muted); vertical-align: top;
+  }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  td .app-name { color: var(--text); font-weight: 600; }
+  .tag {
+    display: inline-block; padding: 0.2rem 0.6rem; border-radius: 6px;
+    font-size: 0.72rem; font-weight: 600;
+  }
+  .tag-national { background: rgba(16,185,129,0.15); color: var(--accent2); }
+  .tag-international { background: rgba(245,158,11,0.15); color: var(--accent); }
+  .tag-proto { background: rgba(168,85,247,0.15); color: #A855F7; }
+
+  .downloads {
+    font-weight: 700; color: var(--text);
+  }
+
+  .rating { display: flex; align-items: center; gap: 0.3rem; }
+  .stars { color: var(--accent); }
+  .rating-num { font-weight: 600; color: var(--text); }
+
+  /* Detail Cards */
+  .detail-cards {
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+  .detail-card {
+    background: var(--bg2); border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+    overflow: hidden; transition: transform 0.3s;
+  }
+  .detail-card:hover { transform: translateY(-2px); }
+  .detail-card-header {
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: 2rem 2.5rem; background: var(--bg3);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .detail-card-header .app-icon {
+    width: 64px; height: 64px; border-radius: 16px;
+    background: var(--gradient1); display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; font-weight: 900; flex-shrink: 0;
+  }
+  .detail-card-header h3 { font-size: 1.4rem; font-weight: 800; }
+  .detail-card-header .app-meta { display: flex; gap: 1rem; margin-top: 0.3rem; flex-wrap: wrap; }
+  .detail-card-header .app-meta span {
+    font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.3rem;
+  }
+
+  .detail-card-body {
+    padding: 2rem 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  }
+  .detail-card-body.full { grid-template-columns: 1fr; }
+
+  .detail-section h4 {
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.8rem;
+  }
+  .detail-section p, .detail-section li {
+    font-size: 0.92rem; color: var(--text-muted); line-height: 1.7;
+  }
+  .detail-section ul { padding-left: 1.2rem; }
+  .detail-section li { margin-bottom: 0.3rem; }
+
+  .detail-section a {
+    color: var(--primary-light); text-decoration: none;
+    font-weight: 500; transition: color 0.2s;
+  }
+  .detail-section a:hover { color: var(--text); }
+
+  .review-summary {
+    background: rgba(79,70,229,0.08); border-radius: 12px; padding: 1.2rem;
+    border: 1px solid rgba(79,70,229,0.15);
+  }
+  .review-pro { color: var(--accent2); }
+  .review-con { color: var(--danger); }
+
+  .grade {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 42px; height: 42px; border-radius: 12px; font-weight: 900; font-size: 1rem;
+  }
+  .grade-1 { background: rgba(16,185,129,0.2); color: #10B981; }
+  .grade-2 { background: rgba(59,130,246,0.2); color: #3B82F6; }
+  .grade-3 { background: rgba(245,158,11,0.2); color: #F59E0B; }
+  .grade-5 { background: rgba(239,68,68,0.15); color: #EF4444; }
+  .grade-6 { background: rgba(239,68,68,0.25); color: #EF4444; }
+
+  /* Video Link Button */
+  .video-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 1rem; border-radius: 8px;
+    background: rgba(239,68,68,0.15); color: #EF4444;
+    text-decoration: none; font-size: 0.85rem; font-weight: 600;
+    transition: background 0.2s;
+  }
+  .video-btn:hover { background: rgba(239,68,68,0.25); color: #EF4444; }
+
+  /* Footer */
+  footer {
+    text-align: center; padding: 3rem; color: var(--text-muted);
+    font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05);
+    max-width: 1400px; margin: 0 auto;
+  }
+  footer a { color: var(--primary-light); text-decoration: none; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    section { padding: 6rem 1.5rem 3rem; }
+    .title-slide h1 { font-size: 2rem; }
+    .detail-card-body { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .req-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="logo">Wettbewerbsanalyse</div>
+  <div class="nav-links">
+    <a href="#chancen">Chancen & Potenzial</a>
+    <a href="#uebersicht">Wettbewerber-Übersicht</a>
+    <a href="#details">Detailanalyse</a>
+  </div>
+</nav>
+
+<!-- ===================== TITLE SLIDE ===================== -->
+<section class="title-slide">
+  <h1>Wettbewerbsanalyse:<br>Neuroinklusive LeselernApp</h1>
+  <p class="subtitle">Marktübersicht, Chancen und detaillierter Vergleich nationaler und internationaler Wettbewerber im Bereich digitaler Leseförderung für Grundschulkinder</p>
+  <p class="meta">Basierend auf: App-Analyse und Wettbewerbsvergleich &middot; Stand: Januar 2026</p>
+</section>
+
+<!-- ===================== SECTION 1: CHANCEN & POTENZIAL ===================== -->
+<section id="chancen">
+  <div class="section-header">
+    <span class="badge badge-blue">Abschnitt 1</span>
+    <h2>Chancen, Potenzial & Anforderungen</h2>
+    <p>Warum der Markt für neuroinklusive LeselernApps eine einzigartige Chance bietet</p>
+  </div>
+
+  <!-- Key Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="number red">25,4%</div>
+      <div class="label">der Viertklässler erreichen nicht den Mindeststandard im Lesen</div>
+      <div class="source">IGLU-Studie 2021, TU Dortmund</div>
+    </div>
+    <div class="stat-card">
+      <div class="number orange">4–7%</div>
+      <div class="label">der Grundschulkinder sind von Legasthenie / LRS betroffen</div>
+      <div class="source">Bundesverband Legasthenie e.V.</div>
+    </div>
+    <div class="stat-card">
+      <div class="number blue">~3 Mio.</div>
+      <div class="label">Grundschulkinder in Deutschland als potenzielle Zielgruppe</div>
+      <div class="source">Statistisches Bundesamt</div>
+    </div>
+    <div class="stat-card">
+      <div class="number green">0</div>
+      <div class="label">Marktführer mit vollständigem neuro-inklusivem Design im DACH-Raum</div>
+      <div class="source">Eigene Analyse, Jan 2026</div>
+    </div>
+  </div>
+
+  <!-- IGLU Details -->
+  <div class="info-box">
+    <h3>IGLU-Studie 2021: Alarmierende Lage der Lesekompetenz</h3>
+    <p>Die Internationale Grundschul-Lese-Untersuchung (IGLU 2021) zeigt einen signifikanten Leistungsrückgang bei deutschen Viertklässlern:</p>
+    <ul>
+      <li>Mittlere Lesekompetenz: <strong>524 Punkte</strong> (2001: 539, 2016: 537) – 20-Jahres-Tief</li>
+      <li>25,4% erreichen nicht den Mindeststandard (2016: 18,9%) – starker Anstieg</li>
+      <li>Anteil leistungsstarker Schüler gesunken auf 8,3% (2016: 11,1%)</li>
+      <li>Lesemotivation rückläufig: nur noch 69,9% lesen gern (2001: 76%)</li>
+      <li>Corona-bedingte Schulschließungen haben den Negativtrend verstärkt</li>
+    </ul>
+    <div class="source" style="margin-top:1rem;font-size:0.75rem;color:var(--text-muted);opacity:0.5;">Quellen: BMBF Pressemitteilung Mai 2023; McElvany et al. 2023, IGLU 2021 Lesekompetenz von Grundschulkindern; Deutsches Schulportal</div>
+  </div>
+
+  <!-- Neurodiverse Stats -->
+  <div class="info-box">
+    <h3>Neurodiversität & Leselernen: Die vergessene Zielgruppe</h3>
+    <ul>
+      <li><strong>Legasthenie/LRS:</strong> 4–7% der Grundschulkinder betroffen, statistisch 1–2 Kinder pro Klasse. Ca. 3,5 Mio. Betroffene in Deutschland insgesamt.</li>
+      <li><strong>ADHS:</strong> Ca. 5% der Kinder und Jugendlichen, häufig komorbid mit LRS. Betroffene benötigen reizarme, fokussierte Interfaces mit Chunking.</li>
+      <li><strong>Familienrisiko:</strong> 40% Wahrscheinlichkeit, dass Geschwister bei einer Legasthenie-Diagnose ebenfalls betroffen sind.</li>
+      <li><strong>Psychische Folgen:</strong> ~40% der betroffenen Kinder entwickeln eine psychische Erkrankung durch Stigmatisierung und Ausgrenzung.</li>
+    </ul>
+    <div class="source" style="margin-top:1rem;font-size:0.75rem;color:var(--text-muted);opacity:0.5;">Quellen: Bundesverband Legasthenie & Dyskalkulie e.V. (bvl-legasthenie.de); LEO-Studie; Legasthenie-Coaching.de</div>
+  </div>
+
+  <!-- Regulatory Requirements -->
+  <div class="section-header" style="margin-top:3rem;">
+    <h2 style="font-size:1.8rem;">Regulatorische Anforderungen & Marktlücke</h2>
+  </div>
+
+  <div class="req-grid">
+    <div class="req-card">
+      <h4>Barrierefreiheitsstärkungsgesetz (BFSG)</h4>
+      <p>Seit dem 28. Juni 2025 verpflichtend. Digitale Produkte und Dienstleistungen müssen barrierefrei nach WCAG 2.1 AA gestaltet sein. Lern-Apps mit Vertragsabschluss-Funktionen sind direkt betroffen.</p>
+    </div>
+    <div class="req-card">
+      <h4>UN-Behindertenrechtskonvention (UN-BRK)</h4>
+      <p>Art. 24 garantiert das Recht auf inklusive Bildung. Digitale Lernmedien müssen für Kinder mit Behinderungen zugänglich sein – nicht nur physisch, sondern auch kognitiv.</p>
+    </div>
+    <div class="req-card">
+      <h4>Deutsche Silbenmethodik als Standard</h4>
+      <p>Der Leseerwerb in Deutschland basiert auf der Silbenmethode (flache Orthografie). Internationale Apps mit Phonics-Fokus (tiefe Orthografie des Englischen) sind didaktisch ungeeignet.</p>
+    </div>
+    <div class="req-card">
+      <h4>Marktlücke: Neuro-Inklusion</h4>
+      <p>Keine einzige etablierte App vereint: Silbenbasiertes Lernen + Dyslexie-Modus + kognitive Entlastung + generative KI-Personalisierung. Diese Kombination ist die zentrale Chance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTION 2: WETTBEWERBER-ÜBERSICHT ===================== -->
+<section id="uebersicht">
+  <div class="section-header">
+    <span class="badge badge-orange">Abschnitt 2</span>
+    <h2>Wettbewerber-Übersicht</h2>
+    <p>Nationale und internationale Wettbewerber im Vergleich – sortiert nach Eignung für den deutschen Erstleseunterricht</p>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Rang</th>
+          <th>App / Plattform</th>
+          <th>Reichweite</th>
+          <th>Downloads</th>
+          <th>Note</th>
+          <th>Gebiet</th>
+          <th>Kern-Features</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><span class="app-name">Anton</span></td>
+          <td>DACH + EU</td>
+          <td class="downloads">10 Mio.+</td>
+          <td><span class="grade grade-1">1</span></td>
+          <td><span class="tag tag-national">National</span></td>
+          <td>Silbenmethode, Lehrplan-konform, Gamification (Münzen), kostenlos, alle Fächer</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><span class="app-name">Leseludi</span></td>
+          <td>DACH</td>
+          <td class="downloads">Web-App</td>
+          <td><span class="grade grade-1">1-</span></td>
+          <td><span class="tag tag-national">National</span></td>
+          <td>LRS-Förderung, strenge Lernhierarchie (Laut→Wort→Satz→Text), reizarmes Design</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><span class="app-name">eKidz</span></td>
+          <td>DACH + International</td>
+          <td class="downloads">10.000+</td>
+          <td><span class="grade grade-2">2+</span></td>
+          <td><span class="tag tag-national">National</span></td>
+          <td>KI-Sprachanalyse, Graded Readers (Level 1-13), DaZ-geeignet, Sprachaufnahme</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><span class="app-name">Lesekumpel</span></td>
+          <td>Prototyp</td>
+          <td class="downloads">–</td>
+          <td><span class="grade grade-2">2+</span></td>
+          <td><span class="tag tag-proto">Prototyp</span></td>
+          <td>Dyslexie-Modus, Silbenfärbung, Chunking, Generative KI, wort-interaktiv</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><span class="app-name">Lesestart</span></td>
+          <td>Deutschland</td>
+          <td class="downloads">100.000+</td>
+          <td><span class="grade grade-2">2</span></td>
+          <td><span class="tag tag-national">National</span></td>
+          <td>Kostenlos, Stiftung Lesen, 5 interaktive Bücher, Vorlesefunktion, Minispiele</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><span class="app-name">Onilo</span></td>
+          <td>DACH</td>
+          <td class="downloads">10.000+</td>
+          <td><span class="grade grade-2">2-</span></td>
+          <td><span class="tag tag-national">National</span></td>
+          <td>Boardstories (animierte Bilderbücher), Silbenhilfe, Whiteboard-optimiert</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><span class="app-name">Edurino</span></td>
+          <td>DACH</td>
+          <td class="downloads">100.000+</td>
+          <td><span class="grade grade-2">2-</span></td>
+          <td><span class="tag tag-national">National</span></td>
+          <td>Haptisches + digitales Lernen (Stift), Vorschule bis 1. Klasse</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><span class="app-name">Sofatutor</span></td>
+          <td>DACH</td>
+          <td class="downloads">Web-App</td>
+          <td><span class="grade grade-3">3</span></td>
+          <td><span class="tag tag-national">National</span></td>
+          <td>Lernvideos (Flipped Classroom), Wörtertreppe, alle Fächer, hochpreisig</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><span class="app-name">Antolin</span></td>
+          <td>DACH</td>
+          <td class="downloads">50.000+</td>
+          <td><span class="grade grade-3">3-</span></td>
+          <td><span class="tag tag-national">National</span></td>
+          <td>Lesequiz zu Büchern, Punktesystem, setzt Lesekönnen voraus, kein Leselehrgang</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><span class="app-name">Google Read Along</span></td>
+          <td>Weltweit</td>
+          <td class="downloads">10 Mio.+</td>
+          <td><span class="grade grade-5">5</span></td>
+          <td><span class="tag tag-international">International</span></td>
+          <td>Spracherkennung (Diya), offline, aber kein deutsches Leselehrgangs-Curriculum</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td><span class="app-name">Epic!</span></td>
+          <td>Weltweit (US-Fokus)</td>
+          <td class="downloads">10 Mio.+</td>
+          <td><span class="grade grade-5">5</span></td>
+          <td><span class="tag tag-international">International</span></td>
+          <td>Digitale Bibliothek, Lexile-Levels (US), kein Lernprogramm</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td><span class="app-name">Teach Your Monster</span></td>
+          <td>Weltweit (UK)</td>
+          <td class="downloads">1 Mio.+</td>
+          <td><span class="grade grade-6">6</span></td>
+          <td><span class="tag tag-international">International</span></td>
+          <td>Exzellentes Spieldesign, nur Englisch (Phonics), verwirrt dt. Anfänger</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td><span class="app-name">Reading Eggs</span></td>
+          <td>Weltweit (AU/UK)</td>
+          <td class="downloads">1 Mio.+</td>
+          <td><span class="grade grade-6">6</span></td>
+          <td><span class="tag tag-international">International</span></td>
+          <td>Bewährtes Phonics-System, nur Englisch, keine dt. Lokalisierung</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td><span class="app-name">Khan Academy Kids</span></td>
+          <td>Weltweit (US)</td>
+          <td class="downloads">10 Mio.+</td>
+          <td><span class="grade grade-6">6</span></td>
+          <td><span class="tag tag-international">International</span></td>
+          <td>Hohe Qualität, kostenlos, nur Englisch</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td><span class="app-name">ABCmouse</span></td>
+          <td>Weltweit (US)</td>
+          <td class="downloads">1 Mio.+</td>
+          <td><span class="grade grade-6">6</span></td>
+          <td><span class="tag tag-international">International</span></td>
+          <td>Umfangreiches Vorschul-Programm, nur Englisch</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td><span class="app-name">Duolingo ABC</span></td>
+          <td>Weltweit</td>
+          <td class="downloads">10 Mio.+</td>
+          <td><span class="grade grade-6">6</span></td>
+          <td><span class="tag tag-international">International</span></td>
+          <td>English Literacy App, lehrt englische Phonetik, für dt. Erstleser ungeeignet</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box" style="border-left: 4px solid var(--accent);">
+    <h3>Zentrale Erkenntnis: Die Phonics-Falle</h3>
+    <p>Der englische Leseerwerb basiert auf "Phonics" (tiefe Orthografie: "a" klingt in <em>cat</em>, <em>car</em> und <em>cake</em> unterschiedlich). Deutsche Kinder lernen mit der <strong>Silbenmethode</strong> (flache Orthografie: A ist fast immer /a/). Englische Apps erzeugen <strong>proaktive Interferenz</strong> – das Kind lernt falsche Graphem-Phonem-Korrespondenzen, die mühsam verlernt werden müssen.</p>
+  </div>
+</section>
+
+<!-- ===================== SECTION 3: DETAILANALYSE ===================== -->
+<section id="details">
+  <div class="section-header">
+    <span class="badge badge-green">Abschnitt 3</span>
+    <h2>Detaillierte Wettbewerber-Analyse</h2>
+    <p>Kurzbeschreibung, Reichweite, Nutzerbewertungen und Intro-Videos aller relevanten Wettbewerber</p>
+  </div>
+
+  <div class="detail-cards">
+
+    <!-- ANTON -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#3B82F6,#1D4ED8);">A</div>
+        <div>
+          <h3>Anton App</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-1" style="width:28px;height:28px;font-size:0.8rem;">1</span></span>
+            <span>10 Mio.+ Downloads</span>
+            <span class="tag tag-national">National</span>
+            <span>Kostenlos (Basis)</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Der Quasi-Standard in deutschen Klassenzimmern. Anton fungiert als digitales Arbeitsheft mit strikter Lehrplan-Orientierung. Für Klasse 1 Deutsch bietet die App granulare Übungen zu Silbenarbeit ("Eine Silbe", "Zwei Silben", "Silbenbögen setzen"), phonologischer Bewusstheit (Anlaute, Reime) und ein Belohnungssystem mit Münzen, das strikt vom Lernprozess getrennt ist.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=rfsvO3x1c10" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Lehrplan-konform, kostenlos, gut strukturiert, ideal für Hausaufgaben, kein Werbedruck</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Wenig emotionale Tiefe, "trocken" und nüchtern, fehlende narrative Bindung durch Geschichten</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LESELUDI -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#10B981,#059669);">L</div>
+        <div>
+          <h3>Leseludi</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-1" style="width:28px;height:28px;font-size:0.8rem;">1-</span></span>
+            <span>Web-Plattform</span>
+            <span class="tag tag-national">National</span>
+            <span>Kostenpflichtig (Lizenz)</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Der Spezialist für Förderdiagnostik. Leseludi folgt einer strengen Hierarchie: Lautebene → Wortebene → Satzebene → Textebene. Bewusst reizarm gestaltet – ideal für Kinder mit Konzentrationsstörungen und LRS. Umfangreiche Lehrerfunktionen für individuelle Förderpläne.</p>
+          <br>
+          <p><a href="https://www.leseludi.de/" target="_blank">leseludi.de</a></p>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Didaktisch präzise, streng systematisch, ideal bei LRS, gute Lehrerfunktionen</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Kostenpflichtig (Schul-/Elternlizenz), wirkt wie "Software" statt App, wenig motivierendes Design</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- eKidz -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9);">e</div>
+        <div>
+          <h3>eKidz</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-2" style="width:28px;height:28px;font-size:0.8rem;">2+</span></span>
+            <span>10.000+ Downloads</span>
+            <span class="tag tag-national">National</span>
+            <span>Abo-Modell</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Die technologische Speerspitze. Mit Sprachwissenschaftlern entwickelt, bietet eKidz Graded Readers (Level 1–13) und KI-basierte Diagnose der Leseflüssigkeit (Projekt "LeseKind", BMBF-gefördert). Kinder lesen laut vor, die App analysiert Aussprache, Geschwindigkeit und Korrektheit in Echtzeit. Besonders DaZ-geeignet.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=4E1J8HjKNRY" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Adaptive Niveausteuerung, motivierende Texte, gutes Audio-Modelllernen, auch für DaZ geeignet</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Abo-Modell als Kostenbarriere, begrenzte Bekanntheit im Vergleich zu Anton</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LESEKUMPEL -->
+    <div class="detail-card" style="border: 1px solid rgba(168,85,247,0.3);">
+      <div class="detail-card-header" style="background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(79,70,229,0.15));">
+        <div class="app-icon" style="background:linear-gradient(135deg,#A855F7,#7C3AED);">LK</div>
+        <div>
+          <h3>Lesekumpel (Prototyp)</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-2" style="width:28px;height:28px;font-size:0.8rem;">2+</span></span>
+            <span>Prototyp-Phase</span>
+            <span class="tag tag-proto">Prototyp</span>
+            <span>Potenzial zur Note 1</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung & Innovation</h4>
+          <p>Der Innovationsführer bei Barrierefreiheit. Lesekumpel verfolgt einen "Accessibility First"-Ansatz mit:</p>
+          <ul>
+            <li><strong>Dyslexie-Modus:</strong> Spezialisierte Schriftarten (Lexend, Comic Sans MS), vergrößerte Zeilenabstände (2.1)</li>
+            <li><strong>Silbenfärbung:</strong> Rot/Blau-Toggle – direkte Adaption der deutschen Schuldidaktik</li>
+            <li><strong>Chunking:</strong> Texte als "Tiles" statt Blöcke, jedes Wort anklickbar mit Lupen-Funktion</li>
+            <li><strong>Generative KI:</strong> Dynamisch generierte, personalisierte Geschichten (z.B. "Otto der Otter")</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <h4>Marktpositionierung</h4>
+          <div class="review-summary" style="background:rgba(168,85,247,0.08);border-color:rgba(168,85,247,0.15);">
+            <p><strong style="color:#A855F7;">Einzigartige Kombination:</strong> Silbenfärbung (didaktischer Standard) + Dyslexie-Features (medizinisch-psychologischer Standard) füllt eine Marktlücke. Kein anderer Wettbewerber bietet diese Verbindung.</p>
+            <br>
+            <p><strong class="review-con">Risiko:</strong> Als Prototyp noch wenig Inhalt. Für eine Note 1 fehlt die vollumfängliche Produktreife.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LESESTART -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#F59E0B,#D97706);">LS</div>
+        <div>
+          <h3>Lesestart zum Lesenlernen</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-2" style="width:28px;height:28px;font-size:0.8rem;">2</span></span>
+            <span>100.000+ Downloads</span>
+            <span class="tag tag-national">National</span>
+            <span>Kostenlos (Stiftung Lesen / BMBF)</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Teil des bundesweiten Leseförderprogramms "Lesestart 1-2-3" (Stiftung Lesen, BMBF). Bietet 5 interaktive Bücher mit dem Lesestart-Känguru als Protagonist. Modi: "Alleine Lesen", "Gemeinsam Lesen" und Vorlesefunktion. Kostenlos, werbefrei, pädagogisch geprüft.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=S4oJkSriF_Q" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Sicher, kostenlos, kindgerecht, spielerischer Einstieg ohne Überforderung</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Sehr begrenzter Umfang (nur 5 Bücher), kein Anreiz für langfristige Nutzung, Impulsgeber statt Curriculum</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ONILO -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#EC4899,#BE185D);">O</div>
+        <div>
+          <h3>Onilo</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-2" style="width:28px;height:28px;font-size:0.8rem;">2-</span></span>
+            <span>10.000+ Downloads</span>
+            <span class="tag tag-national">National</span>
+            <span>Schullizenz</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Digitalisiert Kinderliteratur als animierte "Boardstories" für Whiteboard/Tablet. Setzt auf "Dialogisches Vorlesen" im Klassenverband. Bietet Silbenhilfe, differenzierte Textpräsentation und Themenwelten ("Schulanfang" bis "Soziales Lernen"). Unschlagbar für literarische Kompetenz und Lesemotivation.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=7IM5M92-dek" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Hochwertige animierte Geschichten, Lehrerbegleitmaterial, Silbenhilfe-Funktion</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Weniger interaktive Einzelübungen, eher Lehrer-Tool als Selbstlern-App, kostenpflichtig</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDURINO -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#14B8A6,#0D9488);">Ed</div>
+        <div>
+          <h3>Edurino</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-2" style="width:28px;height:28px;font-size:0.8rem;">2-</span></span>
+            <span>100.000+ Downloads</span>
+            <span class="tag tag-national">National</span>
+            <span>Starterset + In-App</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Innovativer Hybrid-Ansatz: Haptischer Eingabestift + digitale App-Inhalte. Zielgruppe Vorschule bis 1. Klasse. Spielfiguren schalten Lernwelten frei. Kombination aus physischem und digitalem Lernen spricht mehrere Sinneskanäle an.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=aVvAQQZVQbk" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Innovatives Konzept, kindgerechtes Design, haptisches Lernerlebnis, motivierend</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Starterset-Kosten, begrenzte Tiefe für reines Lesenlernen, eher Vorschul-orientiert</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANTOLIN -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#F97316,#EA580C);">An</div>
+        <div>
+          <h3>Antolin</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-3" style="width:28px;height:28px;font-size:0.8rem;">3-</span></span>
+            <span>50.000+ Downloads</span>
+            <span class="tag tag-national">National</span>
+            <span>Schullizenz (Westermann)</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Kein Lese-Lernprogramm, sondern Diagnostik- und Motivationsinstrument. Kinder lesen physische Bücher und beantworten dann Quiz-Fragen zum Textverständnis. Riesige Datenbank mit Quizzen zu Tausenden Kinderbüchern. Erst ab 2. Halbjahr Klasse 1 sinnvoll einsetzbar.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=DagRCXJ4qr0" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Riesige Bücher-Datenbank, fördert Lesemotivation, Punktesystem motiviert</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Nicht zum Lesenlernen geeignet, überfordert Anfänger, setzt Lesekönnen voraus</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Separator: International -->
+    <div style="padding:2rem 0; text-align:center;">
+      <span class="badge badge-orange" style="font-size:0.9rem;padding:0.6rem 1.5rem;">Internationale Wettbewerber – Note 5–6 für dt. Erstleseunterricht</span>
+    </div>
+
+    <!-- GOOGLE READ ALONG -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#4285F4,#34A853);">G</div>
+        <div>
+          <h3>Google Read Along</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-5" style="width:28px;height:28px;font-size:0.8rem;">5</span></span>
+            <span>10 Mio.+ Downloads</span>
+            <span class="tag tag-international">International</span>
+            <span>Kostenlos</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Technologisch beeindruckend durch Spracherkennung ("Diya") mit Offline-Funktion. Kinder lesen laut vor, die App erkennt und korrigiert. Jedoch: Kein kuratiertes, didaktisch aufgebautes deutsches Curriculum für Anfänger – eher ein "Reading Buddy" für Kinder, die bereits lesen können.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=fiG7Tu7Xy_w" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Offline-fähig, kostenlos, Spracherkennung funktioniert gut, motivierender Assistent</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Kein strukturierter deutscher Leselehrgang, Texte oft Übersetzungen, kein Silben-Fokus</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EPIC -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#EF4444,#DC2626);">E!</div>
+        <div>
+          <h3>Epic!</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-5" style="width:28px;height:28px;font-size:0.8rem;">5</span></span>
+            <span>10 Mio.+ Downloads</span>
+            <span class="tag tag-international">International</span>
+            <span>Abo-Modell</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Riesige digitale Kinderbuch-Bibliothek ("Netflix für Bücher"). Einige deutsche Sachbücher vorhanden, aber Plattform-Logik, Metadaten (Lexile-Level) und Nutzeroberfläche sind anglozentrisch. Kein Lernprogramm, sondern reines Lese-Angebot.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=p9fpqb0kzKk" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Riesige Auswahl, hochwertige Bücher, Audio-Bücher verfügbar</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> US-zentriert, kein deutsches Lern-Curriculum, Abo erforderlich</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEACH YOUR MONSTER -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#22C55E,#15803D);">TM</div>
+        <div>
+          <h3>Teach Your Monster to Read</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-6" style="width:28px;height:28px;font-size:0.8rem;">6</span></span>
+            <span>1 Mio.+ Downloads</span>
+            <span class="tag tag-international">International</span>
+            <span>Einmalkauf</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Eines der besten Lernspiele weltweit – als englisches Phonics-Spiel. Exzellentes Game Design. <strong>Nur auf Englisch verfügbar.</strong> Nutzer schreiben: "If the German language were added now, the app would be the hit." Für deutsche Erstklässler ohne Englisch nutzlos und kontraproduktiv.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=HyAW7gY397s" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Brillantes Spieldesign, motivierend, pädagogisch fundiert (für Englisch)</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Nur Englisch – lehrt deutsche Kinder falsche Lautierung, verwirrt Erstleser</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- READING EGGS -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#FBBF24,#F59E0B);">RE</div>
+        <div>
+          <h3>Reading Eggs</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-6" style="width:28px;height:28px;font-size:0.8rem;">6</span></span>
+            <span>1 Mio.+ Downloads</span>
+            <span class="tag tag-international">International</span>
+            <span>Abo-Modell</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Marktführer in Australien/UK für den Leseaufbau. Bewährtes Phonics-System. <strong>Keine lokalisierte deutsche Version.</strong> Nutzung würde deutschen Kindern englische Phonetik beibringen, was zu proaktiver Interferenz im Erstleseunterricht führt.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=un8P0d756gI" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Bewährtes, strukturiertes System, motivierend, viele Level</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Nur Englisch, keine deutsche Lokalisierung, für dt. Markt unbrauchbar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KHAN ACADEMY KIDS -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#14B8A6,#0891B2);">KA</div>
+        <div>
+          <h3>Khan Academy Kids</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-6" style="width:28px;height:28px;font-size:0.8rem;">6</span></span>
+            <span>10 Mio.+ Downloads</span>
+            <span class="tag tag-international">International</span>
+            <span>Kostenlos</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Exzellente, ganzheitliche Vorschul-App mit hoher Qualität und komplett kostenlos. Umfasst Lesen, Mathematik, soziale Kompetenz. <strong>Nur auf Englisch verfügbar</strong> ("only available in English"). Nutzung im deutschen Deutschunterricht nicht möglich.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=O6i-l1MywkQ" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Höchste Qualität, kostenlos, kein Werbedruck, umfassende Lerninhalte</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Sprachbarriere – rein Englisch, nicht für deutschen Leseerwerb nutzbar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABCMOUSE -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#3B82F6,#2563EB);">AB</div>
+        <div>
+          <h3>ABCmouse</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-6" style="width:28px;height:28px;font-size:0.8rem;">6</span></span>
+            <span>1 Mio.+ Downloads</span>
+            <span class="tag tag-international">International</span>
+            <span>Abo-Modell</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Umfangreiches US-Vorschulprogramm mit über 10.000 Lernaktivitäten. Abdeckung von Lesen, Mathe, Kunst, Musik. <strong>Nur auf Englisch</strong>. Trotz der Marke "Lernspaß" im deutschen Play Store ist kein deutscher Lese-Lehrgang enthalten.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=505XSxcKFDQ" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Umfangreicher Inhalt, ansprechendes Design, Kinder bleiben motiviert</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Sprachbarriere, nur Englisch, teures Abo, nicht für dt. Erstleser</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DUOLINGO ABC -->
+    <div class="detail-card">
+      <div class="detail-card-header">
+        <div class="app-icon" style="background:linear-gradient(135deg,#84CC16,#65A30D);">D</div>
+        <div>
+          <h3>Duolingo ABC</h3>
+          <div class="app-meta">
+            <span><span class="grade grade-6" style="width:28px;height:28px;font-size:0.8rem;">6</span></span>
+            <span>10 Mio.+ Downloads</span>
+            <span class="tag tag-international">International</span>
+            <span>Kostenlos</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-card-body">
+        <div class="detail-section">
+          <h4>Kurzbeschreibung</h4>
+          <p>Speziell für English Literacy entwickelt – nicht zu verwechseln mit der normalen Duolingo-App. Lehrt Kindern das Lesen <strong>auf Englisch</strong>. Für deutsche Erstleser "Thema verfehlt": Die App bringt englische Phonetik bei, was dem deutschen Silbenlernen widerspricht.</p>
+          <br>
+          <a href="https://www.youtube.com/watch?v=TlW6PfS6Txg" target="_blank" class="video-btn">&#9654; Intro-Video ansehen</a>
+        </div>
+        <div class="detail-section">
+          <h4>Nutzerbewertungen (Play Store)</h4>
+          <div class="review-summary">
+            <p><strong class="review-pro">+ Positiv:</strong> Spielerisch, gutes Duolingo-Design, motivierend</p>
+            <br>
+            <p><strong class="review-con">- Negativ:</strong> Lehrt englische Phonetik, für dt. Erstleseunterricht kontraproduktiv</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /detail-cards -->
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <p>Wettbewerbsanalyse &middot; Neuroinklusive LeselernApp &middot; Stand Januar 2026</p>
+  <p style="margin-top:0.5rem;">Quellen: <a href="https://www.bmbf.de/bmbf/shareddocs/pressemitteilungen/de/2023/05/160523-IGLU21.html">BMBF/IGLU 2021</a> &middot; <a href="https://www.bvl-legasthenie.de/">BVL e.V.</a> &middot; <a href="https://www.bundesfachstelle-barrierefreiheit.de/DE/Fachwissen/Produkte-und-Dienstleistungen/Barrierefreiheitsstaerkungsgesetz/barrierefreiheitsstaerkungsgesetz_node.html">BFSG</a> &middot; <a href="https://www.stiftunglesen.de/">Stiftung Lesen</a></p>
+</footer>
+
+</body>
+</html>
